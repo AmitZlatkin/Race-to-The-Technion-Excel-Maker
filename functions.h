@@ -14,7 +14,9 @@
 using std::string;
 using std::cout;
 using std::endl;
+using stringVector = std::vector<string>;
 using stringsPair = std::pair<string, string>;
+
 using namespace OpenXLSX;
 
 static const string defaultOutputFilename = "race-to-the-technion-scores";
@@ -25,75 +27,41 @@ static const XLColor white = XLColor(255, 255, 255);
 static const XLColor black = XLColor(0, 0, 0);
 
 
+/**
+ * convertArgv: convert argv from char** to vector<string>
+ * @param argc argc that main() got
+ * @param argv argv that main() got
+ * @return the converted argv
+ */
+stringVector convertArgv(int argc, char** argv);
 
-// Windows .exe functions:
 
 /**
  * splitString: split a string by a delimiter
  * @param str the string to split
  * @return a vector of strings, split by whitespace
  */
-std::vector<string> splitString(const string& str);
+stringVector splitString(const string& str);
 
-/**
- * readUserInput_WIN: read user input from command line or prompt for default configuration
- * 
- * @param argc the number of command line arguments
- * @param argv the command line arguments
- * @return a pair containing the json configuration string and the output filename
- */
-stringsPair readUserInput_WIN(int argc, std::vector<string> argv, bool quitCMD = false);
-
-/**
- * checkArguments_WIN: check the command line arguments for validity and set flags accordingly
- * 
- * possible flags:
- * 
- * - <file>.json : path to the json configuration file. If not provided, user will be prompted to use default configuration
- * 
- * - -d, --default : use default configuration without prompting
- * 
- * - -n, --name : specify the name of the output file
- * 
- * - -h, --help : print help message and exit
- * 
- * @param argc the number of command line arguments
- * @param argv the command line arguments
- * @param flag_default reference to a boolean that will be set to true if the default flag is set
- * 
- * @return a pair containing the output filename (or default if not provided) and the json filename (or empty string if not provided)
- */
-stringsPair checkArguments_WIN(int argc, std::vector<string> argv, bool& flag_default, bool quitCMD = false);
-
-/**
- * findFlag_WIN: find the index of a flag in the command line arguments
- * @param argc the number of command line arguments
- * @param argv the command line arguments
- * @param flag_v1 the first version of the flag to search for
- * @param flag_v2 the second version of the flag to search for
- * @return the index of the flag in argv if found, -1 otherwise
- */
-int findFlag_WIN(int argc, std::vector<string> argv, const string& flag_v1, const string& flag_v2);
 
 /**
  * custom_exit: use exit() function with extra steps
  * @param ret the value to give to exit()
- * @param quitCMD whether to close the cmd of the program. Default value is false.
+ * @param autoQuitCMD whether to close the cmd of the program. Default value is true.
  */
-void custom_exit(int ret, bool quitCMD = false);
-
-// end of .exe functions
+void custom_exit(int ret, bool autoQuitCMD = true);
 
 
-// terminal functions:
 /**
  * readUserInput: read user input from command line or prompt for default configuration
  * 
  * @param argc the number of command line arguments
  * @param argv the command line arguments
+ * @param autoQuitCMD whether to quit the cmd upon problems with the JSON file.
+ *                    defaulted to true, so as to not break linux app.
  * @return a pair containing the json configuration string and the output filename
  */
-stringsPair readUserInput(int argc, char** argv);
+stringsPair readUserInput(int argc, const stringVector& argv, bool autoQuitCMD = true);
 
 
 /**
@@ -112,10 +80,12 @@ stringsPair readUserInput(int argc, char** argv);
  * @param argc the number of command line arguments
  * @param argv the command line arguments
  * @param flag_default reference to a boolean that will be set to true if the default flag is set
+ * @param autoQuitCMD whether to quit the cmd upon problems with the JSON file.
+ *                    defaulted to true, so as to not break linux app.
  * 
  * @return a pair containing the output filename (or default if not provided) and the json filename (or empty string if not provided)
  */
-stringsPair checkArguments(int argc, char** argv, bool& flag_default);
+stringsPair checkArguments(int argc, const stringVector& argv, bool& flag_default, bool autoQuitCMD = true);
 
 
 /**
@@ -126,9 +96,7 @@ stringsPair checkArguments(int argc, char** argv, bool& flag_default);
  * @param flag_v2 the second version of the flag to search for
  * @return the index of the flag in argv if found, -1 otherwise
  */
-int findFlag(int argc, char** argv, const string& flag_v1, const string& flag_v2);
-
-// end of terminal functions
+int findFlag(int argc, const stringVector& argv, const string& flag_v1, const string& flag_v2);
 
 
 /**

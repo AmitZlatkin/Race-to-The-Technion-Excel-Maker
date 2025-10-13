@@ -16,7 +16,8 @@ using namespace OpenXLSX;
 
 int main(int argc, char** argv) {
 
-    stringsPair userInput = readUserInput(argc, argv);
+    stringVector conv_argv = convertArgv(argc, argv);
+    stringsPair userInput = readUserInput(argc, conv_argv);
 
     string jsonString = userInput.first;
     string outputFilename = userInput.second;

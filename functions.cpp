@@ -2,19 +2,27 @@
 #include "functions.h"
 #include <ctime>
 
-// Windows .exe functions:
 
-void custom_exit(int ret, bool quitCMD) {
-    if (!quitCMD) {
-        string useless_str;
+stringVector convertArgv(int argc, char** argv) {
+    stringVector res;
+    for(int i=0; i<argc; i++) {
+        res.push_back(string(argv[i]));
+    }
+    return res;
+}
+
+
+void custom_exit(int ret, bool autoQuitCMD) {
+    if (!autoQuitCMD) {
+        string dummy;
         printLine("Press Enter to quit...");
-        std::cin.ignore(); // Waits for Enter (ignores one line of input)
+        std::getline(std::cin, dummy);
     }
     exit(ret);
 }
 
 
-std::vector<string> splitString(const string& str) {
+stringVector splitString(const string& str) {
     std::vector<std::string> words;
     std::istringstream stream(str);
     std::string word;
@@ -27,121 +35,11 @@ std::vector<string> splitString(const string& str) {
 }
 
 
-stringsPair readUserInput_WIN(int argc, std::vector<string> argv, bool quitCMD) {
+stringsPair readUserInput(int argc, const stringVector& argv, bool autoQuitCMD) {
 
     bool flag_default = false;
 
-    std::pair<string, string> inputResult = checkArguments_WIN(argc, argv, flag_default, quitCMD);
-    string outputFilename = inputResult.first;    
-    string configFilename = inputResult.second;
-
-    printLine("\nReading json configuration file...");
-    string jsonString;
-    
-    if (configFilename != "") {
-        jsonString = getJsonString(configFilename, false);
-        printLine("Race was successfully configured based on json file.\n");
-    } else {
-
-        if (flag_default) {
-            printLine("Using the default configuration...");
-            jsonString = getDefaultJsonString();
-            printLine("Race was successfully configured based on default configuration.\n");
-            return {jsonString, outputFilename};
-        }
-
-        printLine("No json file was given...");
-        printLine("Do you want to use the default configuration? Y/n\n");
-        
-        char userInput;
-        std::cin >> userInput;
-        
-        if (userInput == 'Y' || userInput == 'y') {
-            printLine("\nUsing the default configuration...");
-            jsonString = getDefaultJsonString();
-            printLine("Race was successfully configured based on default configuration.\n");
-        }
-        else if (userInput == 'N' || userInput == 'n') {
-            printLine("\nUser has chosen to not use default configuration.");
-            printLine("Quitting execution.\n");
-            custom_exit(0);
-        }
-        else {
-            printLine("\nInvalid key was pressed, quitting execution.\n");
-            custom_exit(1);
-        }
-    }
-    return {jsonString, outputFilename};
-}
-
-
-int findFlag_WIN(int argc, std::vector<string> argv, const string& flag_v1, const string& flag_v2) {
-    for (int i = 1; i < argc; ++i) {
-        if (argv[i] == flag_v1 || argv[i] == flag_v2) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-
-stringsPair checkArguments_WIN(int argc, std::vector<string> argv, bool& flag_default, bool quitCMD) {
-    int help_index = findFlag_WIN(argc, argv, "-h", "--help");
-    int name_index = findFlag_WIN(argc, argv, "-n", "--name");
-    int default_index = findFlag_WIN(argc, argv, "-d", "--default");
-
-    if (help_index != -1) {
-        if (help_index != 1) {
-            printLine("\nError: The help option must be the first flag (if provided).");
-            printLine("Use --help or -h by itself to see full usage instructions.\n");
-            custom_exit(1, quitCMD);
-        }
-        printHelpMessage(argv[0]);
-        custom_exit(0, quitCMD);
-    }
-
-    // correct order of flags: help, name, output filename, default, json filename
-    
-    bool correct_order = true;
-    if (name_index != -1 && name_index <= help_index) correct_order = false;
-    if (default_index != -1 && default_index <= name_index) correct_order = false;
-    if (!correct_order) {
-        printLine("\nError: Incorrect order of flags.");
-        printLine("Use --help or -h by itself to see full usage instructions.\n");
-        custom_exit(1, quitCMD);
-    }
-
-    string outputFilename = defaultOutputFilename;
-    string configFilename = "";
-    if (name_index != -1) {
-        if ((name_index + 1 >= argc) || (name_index + 1 >= default_index && default_index != -1)) {
-            printLine("\nError: No output filename provided after --name or -n option.");
-            printLine("Use --help or -h by itself to see full usage instructions.\n");
-            custom_exit(1, quitCMD);
-        }
-        outputFilename = string(argv[name_index + 1]);
-    }
-
-    if (default_index != -1) {
-        flag_default = true;
-    } else {
-        if (argc > name_index + 2) {
-            configFilename = argv[argc - 1];
-        }
-    }
-    return {outputFilename, configFilename};
-}
-
-// end of .exe functions
-
-
-// terminal functions:
-
-stringsPair readUserInput(int argc, char** argv) {
-
-    bool flag_default = false;
-
-    std::pair<string, string> inputResult = checkArguments(argc, argv, flag_default);
+    stringsPair inputResult = checkArguments(argc, argv, flag_default, autoQuitCMD);
     string outputFilename = inputResult.first;    
     string configFilename = inputResult.second;
 
@@ -163,29 +61,29 @@ stringsPair readUserInput(int argc, char** argv) {
         printLine("No json file was given...");
         printLine("Do you want to use the default configuration? Y/n\n");
         
-        char userInput;
-        std::cin >> userInput;
+        string userInput;
+        std::getline(std::cin, userInput);
         
-        if (userInput == 'Y' || userInput == 'y') {
+        if (userInput == "Y" || userInput == "y") {
             printLine("\nUsing the default configuration...");
             jsonString = getDefaultJsonString();
             printLine("Race was successfully configured based on default configuration.\n");
         }
-        else if (userInput == 'N' || userInput == 'n') {
+        else if (userInput == "N" || userInput == "n") {
             printLine("\nUser has chosen to not use default configuration.");
             printLine("Quitting execution.\n");
-            exit(0);
+            custom_exit(0, autoQuitCMD);
         }
         else {
             printLine("\nInvalid key was pressed, quitting execution.\n");
-            exit(1);
+            custom_exit(1, autoQuitCMD);
         }
     }
     return {jsonString, outputFilename};
 }
 
 
-int findFlag(int argc, char** argv, const string& flag_v1, const string& flag_v2) {
+int findFlag(int argc, const stringVector& argv, const string& flag_v1, const string& flag_v2) {
     for (int i = 1; i < argc; ++i) {
         if (argv[i] == flag_v1 || argv[i] == flag_v2) {
             return i;
@@ -195,19 +93,18 @@ int findFlag(int argc, char** argv, const string& flag_v1, const string& flag_v2
 }
 
 
-stringsPair checkArguments(int argc, char** argv, bool& flag_default) {
+stringsPair checkArguments(int argc, const stringVector& argv, bool& flag_default, bool autoQuitCMD) {
     int help_index = findFlag(argc, argv, "-h", "--help");
     int name_index = findFlag(argc, argv, "-n", "--name");
     int default_index = findFlag(argc, argv, "-d", "--default");
-
     if (help_index != -1) {
         if (help_index != 1) {
             printLine("\nError: The help option must be the first flag (if provided).");
             printLine("Use --help or -h by itself to see full usage instructions.\n");
-            exit(1);
+            custom_exit(1, autoQuitCMD);
         }
         printHelpMessage(argv[0]);
-        exit(0);
+        custom_exit(0, autoQuitCMD);
     }
 
     // correct order of flags: help, name, output filename, default, json filename
@@ -218,7 +115,7 @@ stringsPair checkArguments(int argc, char** argv, bool& flag_default) {
     if (!correct_order) {
         printLine("\nError: Incorrect order of flags.");
         printLine("Use --help or -h by itself to see full usage instructions.\n");
-        exit(1);
+        custom_exit(1, autoQuitCMD);
     }
 
     string outputFilename = defaultOutputFilename;
@@ -227,7 +124,7 @@ stringsPair checkArguments(int argc, char** argv, bool& flag_default) {
         if ((name_index + 1 >= argc) || (name_index + 1 >= default_index && default_index != -1)) {
             printLine("\nError: No output filename provided after --name or -n option.");
             printLine("Use --help or -h by itself to see full usage instructions.\n");
-            exit(1);
+            custom_exit(1, autoQuitCMD);
         }
         outputFilename = string(argv[name_index + 1]);
     }
@@ -241,8 +138,6 @@ stringsPair checkArguments(int argc, char** argv, bool& flag_default) {
     }
     return {outputFilename, configFilename};
 }
-
-// end of terminal functions
 
 
 void printLine(const string& str, char end)  {

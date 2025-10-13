@@ -77,7 +77,7 @@ string getDefaultJsonString() {
 }
 
 
-string getJsonString(const string& jsonFilePath, bool quitCMD) {
+string getJsonString(const string& jsonFilePath, bool autoQuitCMD) {
     std::ifstream jsonFile = std::ifstream(jsonFilePath);
 
     string jsonString;
@@ -86,7 +86,7 @@ string getJsonString(const string& jsonFilePath, bool quitCMD) {
         jsonString = "";
     }
     if (jsonString == "") {
-        custom_exit(1, quitCMD);
+        custom_exit(1, autoQuitCMD);
     }
 
     string row;

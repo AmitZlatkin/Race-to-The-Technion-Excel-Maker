@@ -17,21 +17,29 @@ using namespace OpenXLSX;
 int main(int argc, char** argv) {
 
     stringsPair processedUserInput;
+    stringVector user_argv;
 
-    if (argc <= 1) {
+    bool autoQuitCMD = argc > 1;
+    if (!autoQuitCMD) {
         string userInput;
         printLine();
         printLine("Please enter the command line arguments (or press Enter to use default configuration):");
         printLine();
         printLine("./RaceXL.exe", ' ');
         std::getline(std::cin, userInput);
-        userInput = "./RaceXL.exe " + userInput + " ";  // " " to ensure the last argument is read correctly
-        std::vector<string> user_argv = splitString(userInput);
-        int user_argc = user_argv.size();  
-        processedUserInput = readUserInput_WIN(user_argc, user_argv);
-    } else {
-        processedUserInput = readUserInput(argc, argv);
+        if (!userInput.empty()) {
+            userInput = "./RaceXL.exe " + userInput + " ";  // " " to ensure the last argument is read correctly
+            user_argv = splitString(userInput);
+        } else {
+            user_argv.push_back("./RaceXL.exe");
+        }
     }
+    else {
+        user_argv = convertArgv(argc, argv);
+    }
+    
+    processedUserInput = readUserInput(user_argv.size(), user_argv, autoQuitCMD);
+    
     string jsonString = processedUserInput.first;
     string outputFilename = processedUserInput.second;
 
@@ -73,7 +81,7 @@ int main(int argc, char** argv) {
     doc.close();
     printLine("Done!\n");
 
-    if (argc <= 1) {
+    if (!autoQuitCMD) {
         printLine("Press Enter to quit...");
         std::cin.ignore(); // Waits for Enter (ignores one line of input)
     }
