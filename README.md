@@ -64,35 +64,35 @@ If no configuration options are provided, the program will prompt the user wheth
 If both name options and configuration options are provided, the program will use the specified name and configuration file.
 
 ### All possible combinations:
-Print the help message and exit:
+#### Print the help message and exit:
 ```
 ./RaceXL --help
 ./RaceXL -h
 ```
 
-Use custom output filename with default configuration (will prompt whether to use default configuration or not):
+#### Use custom output filename with default configuration (will prompt whether to use default configuration or not):
 ```
 ./RaceXL --name <output_filename>
 ./RaceXL -n <output_filename>
 ```
 
-Use default configuration (will prompt whether to use default configuration or not) with default output filename 'race-to-the-technion-scores':
+#### Use default configuration (will prompt whether to use default configuration or not) with default output filename 'race-to-the-technion-scores':
 ```
 ./RaceXL
 ```
 
-Use default configuration without prompting:
+#### Use default configuration without prompting:
 ```
 ./RaceXL --default
 ./RaceXL -d
 ```
 
-Use custom configuration file with default output filename 'race-to-the-technion-scores':
+#### Use custom configuration file with default output filename 'race-to-the-technion-scores':
 ```
 ./RaceXL <json_filename>
 ```
 
-Use custom output filename with default configuration without prompting:
+#### Use custom output filename with default configuration without prompting:
 ```
 ./RaceXL --name <output_filename> --default
 ./RaceXL -n <output_filename> --default
@@ -100,7 +100,7 @@ Use custom output filename with default configuration without prompting:
 ./RaceXL -n <output_filename> -d
 ```
 
-Use custom output filename with custom configuration file:
+#### Use custom output filename with custom configuration file:
 ```
 ./RaceXL --name <output_filename> <json_filename>
 ./RaceXL -n <output_filename> <json_filename>
