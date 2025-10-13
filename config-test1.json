@@ -1,0 +1,61 @@
+{
+    "teams": 7,
+    "activities": [
+        {
+            "name": "Activity A",
+            "location": "Loaction A",
+            "makeWorksheet": true,
+            "rows": 10,
+            "numberTable": true,
+            "pointsPerRow": 3
+        },
+        {
+            "name": "Activity B",
+            "location": "Loaction B",
+            "makeWorksheet": true,
+            "rows": 7,
+            "numberTable": false,
+            "pointsPerRow": 5
+        },
+        {
+            "name": "Activity C",
+            "location": "Loaction C",
+            "makeWorksheet": false,
+            "rows": 0,
+            "numberTable": false,
+            "pointsPerRow": 0
+        },
+        {
+            "name": "Activity D",
+            "location": "Loaction D",
+            "makeWorksheet": true,
+            "rows": 8,
+            "numberTable": false,
+            "pointsPerRow": 4
+        },
+        {
+            "name": "Activity E",
+            "location": "Loaction E",
+            "makeWorksheet": false,
+            "rows": 0,
+            "numberTable": false,
+            "pointsPerRow": 0
+        },
+        {
+            "name": "Activity F",
+            "location": "Loaction F",
+            "makeWorksheet": true,
+            "rows": 15,
+            "numberTable": false,
+            "pointsPerRow": 2
+        },
+        {
+            "name": "Activity G",
+            "location": "Loaction G",
+            "makeWorksheet": false,
+            "rows": 0,
+            "numberTable": false,
+            "pointsPerRow": 0
+        }
+    ]
+}
