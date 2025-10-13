@@ -2,8 +2,8 @@
 # Race to The Technion - Excel Score Sheet Generator
 
 Created by Amit Zlatkin, a graduate of the 11th class of Odyssey at the Technion, for the use of future generations.\
-For any issues, contact me at amit.zlatkin@campus.technion.ac.il\
-The program may be updated in the future, check the [github repo](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker) for the most up-to-date version.
+For any issues, contact me at [amit.zlatkin@campus.technion.ac.il](amit.zlatkin@campus.technion.ac.il).\
+Check out the [github repository](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker) for more information and for the most up-to-date version.
 
 ## Intro:
 This program generates an Excel score sheet for the yearly Race to the Technion based on a provided JSON configuration file.\
@@ -14,6 +14,10 @@ The resulting Excel file will contain a 'Scores' sheet and additional sheets for
 The 'Scores' sheet will automatically calculate the total scores for each team based on their performance in the activities.\
 Activity sheets will include unformatted checkboxes or numeric input fields for score entry, depending on the activity type, and are named according to the activity names provided in the configuration.\
 If an activity has a sheet, a formula will be added to the 'Scores' sheet to calculate points based on the activity's scoring rules.
+
+**The program is available two executable files:**
+* [**Linux based**](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker/blob/main/RaceXL)
+* [**Windows based (.exe)**](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker/blob/main/RaceXL.exe)
 
 ## Configuration File Format:
 The configuration file should be in JSON format and include the following fields:
@@ -26,13 +30,25 @@ The configuration file should be in JSON format and include the following fields
       - numberTable: A boolean indicating whether the activity uses a numeric input table (true) or checkboxes (false).
       - pointsPerRow: An integer representing the points awarded for each completed row.\
         Relevant only if numberTable is false.
-You can see an example JSON at the end.
+
+You can see an [example JSON at the end](#example-json-configuration).
 
 ## Usage:
+### On Linux:
 ```
 ./RaceXL [help option] [name options] [configuration options]
 ```
+### On Windows:
+```
+./RaceXL.exe [help option] [name options] [configuration options]
+```
+Or just click the app icon (the terminal will be opened automatically).
 ### Options:
+```
+--help, -h
+```
+Show the help message and exit.
+This option must be the first flag if provided.
 ```
 --name, -n
 ```
@@ -40,19 +56,12 @@ Use custom output filename.\
 This option must be followed by the desired output filename.\
 If no name options are provided, the output file will be named 'race_to_the_technion.xlsx'.\
 Note: The output filename should not include the .xlsx extension, as it will be added automatically.
-
 ```
 --default, -d
 ```
 Use default configuration without prompting. No need to specify json file.\
 If no configuration options are provided, the program will prompt the user whether to use the default configuration or not.\
 If both name options and configuration options are provided, the program will use the specified name and configuration file.
-
-```
---help, -h
-```
-Show the help message and exit.
-This option must be the first flag if provided.
 
 ### All possible combinations:
 Print the help message and exit:

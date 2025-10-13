@@ -260,12 +260,6 @@ void printHelpMessage(const string& progName) {
     printLine("If no configuration file is provided, the program can use a default configuration.");
     printLine("The output Excel file will be named 'race_to_the_technion_scores.xlsx' by default, but a custom name can be specified.");
     printLine();
-    printLine("The resulting Excel file will contain a 'Scores' sheet and additional sheets for each activity as specified in the configuration.");
-    printLine("The 'Scores' sheet will automatically calculate the total scores for each team based on their performance in the activities.");
-    printLine("Activity sheets will include unformatted checkboxes or numeric input fields for score entry, depending on the activity type.");
-    printLine("Activity sheets will be named according to the activity names provided in the configuration.");
-    printLine("If an activity has a sheet, a formula will be added to the 'Scores' sheet to calculate points based on the activity's scoring rules.");
-    printLine();
     printLine("Configuration File Format:");
     printLine("The configuration file should be in JSON format and include the following fields:");
     printLine("  - teams: An integer representing the number of teams participating in the race.");
@@ -277,14 +271,15 @@ void printHelpMessage(const string& progName) {
     printLine("      - numberTable: A boolean indicating whether the activity uses a numeric input table (true) or checkboxes (false).");
     printLine("      - pointsPerRow: An integer representing the points awarded for each completed row. Relevant only if numberTable is false.");
     printLine();
-    printLine("Example JSON Configuration:");
-    printLine(getDefaultJsonString());
-    printLine();
     printLine("Usage:");
     printLine();
     printLine("    " + string(progName) + " [help option] [name options] [configuration options]");
     printLine();
     printLine("Options:");
+    printLine("  --help, -h");
+    printLine("        Show this help message and exit.");
+    printLine("        This option must be the first flag if provided.");
+    printLine();
     printLine("  --name, -n");
     printLine("        Use custom output filename.");
     printLine("        This option must be followed by the desired output filename.");
@@ -298,41 +293,10 @@ void printHelpMessage(const string& progName) {
     printLine("  If no configuration options are provided, the program will prompt the user whether to use the default configuration or not.");
     printLine("  If both name options and configuration options are provided, the program will use the specified name and configuration file.");
     printLine();
-    printLine("  --help, -h");
-    printLine("        Show this help message and exit.");
-    printLine("        This option must be the first flag if provided.");
-    printLine();
-    printLine("All possible combinations:");
-    printLine("    " + progName + " --help");
-    printLine("    " + progName + " -h");
-    printLine("        Print this help message and exit.");
-    printLine();
-    printLine("    " + progName + " --name <output_filename>");
-    printLine("    " + progName + " -n <output_filename>");
-    printLine("        Use custom output filename with default configuration (will prompt whether to use default configuration or not).");
-    printLine();
-    printLine("    " + progName + "");
-    printLine("        Use default configuration (will prompt whether to use default configuration or not) with default output filename '" + defaultOutputFilename + "'.");
-    printLine();
-    printLine("    " + progName + " --default");
-    printLine("    " + progName + " -d");
-    printLine("        Use default configuration without prompting.");
-    printLine();
-    printLine("    " + progName + " <json_filename>");
-    printLine("        Use custom configuration file with default output filename '" + defaultOutputFilename + "'.");
-    printLine();
-    printLine("    " + progName + " --name <output_filename> --default");
-    printLine("    " + progName + " -n <output_filename> --default");
-    printLine("    " + progName + " --name <output_filename> -d");
-    printLine("    " + progName + " -n <output_filename> -d");
-    printLine("        Use custom output filename with default configuration without prompting.");
-    printLine();
-    printLine("    " + progName + " --name <output_filename> <json_filename>");
-    printLine("    " + progName + " -n <output_filename> <json_filename>");
-    printLine("        Use custom output filename with custom configuration file.");
-    printLine();
-    printLine("Created by Amit Zlatkin, graduate of the 11th class of Odyssey at the techion, for the use of future generations.");
+    printLine("The program was created by Amit Zlatkin, a graduate of the 11th class of Odyssey at the Techion, for the use of future generations.");
     printLine("For any issues, please contact me at amit.zlatkin@campus.technion.ac.il");
+    printLine("For more information and for the most up-to-date version - check out the github repository at:");
+    printLine("    https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker");
     printLine();
 }
 
@@ -393,7 +357,7 @@ void setDeltaTimeFormulas(XLDocument& doc, XLWorksheet& wks, int teams) {
     tm.tm_min = 0;
     tm.tm_sec = 0;
     XLDateTime dt (tm);
-    
+
     auto dateTimeCells = getRange(wks, wks.cell(2, colShift+2), wks.cell(3, colShift+1+teams));;
     for (auto cell : dateTimeCells) {
         cell.value() = dt;

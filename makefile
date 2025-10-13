@@ -20,7 +20,7 @@ OBJS_WIN = $(addprefix $(BUILD_DIR_WIN)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefi
 # Linux:
 
 # Default target
-all: $(TARGET)
+all: $(TARGET) $(TARGET_WIN)
 
 # Link object files to create the executable
 $(TARGET): $(OBJS)
