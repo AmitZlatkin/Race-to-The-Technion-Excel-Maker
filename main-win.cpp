@@ -21,12 +21,11 @@ int main(int argc, char** argv) {
     if (argc <= 1) {
         string userInput;
         printLine();
-        printLine("For help, re-run from the real terminal and use -h or --help as the first flag.");
         printLine("Please enter the command line arguments (or press Enter to use default configuration):");
         printLine();
-        printLine("./RaceXl.exe", ' ');
+        printLine("./RaceXL.exe", ' ');
         std::getline(std::cin, userInput);
-        userInput = "./RaceXl.exe " + userInput + " ";  // " " to ensure the last argument is read correctly
+        userInput = "./RaceXL.exe " + userInput + " ";  // " " to ensure the last argument is read correctly
         std::vector<string> user_argv = splitString(userInput);
         int user_argc = user_argv.size();  
         processedUserInput = readUserInput_WIN(user_argc, user_argv);
