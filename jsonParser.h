@@ -27,6 +27,8 @@ string getDefaultJsonString();
 /**
  * getJsonString: Reads a JSON file and returns its content as a string
  * @param jsonFilePath the path to the JSON file
+ * @param quitCMD whether to quit the cmd upon problems with the JSON file.
+ *                defaulted to true, so as to not break linux app.
  * @return the content of the JSON file as a string
  */
 string getJsonString(const string& jsonFilePath, bool quitCMD = true);
