@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/RaceXL",
-            "args": ["wrong-filename"],
+            "args": ["--name","t1","config.json"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
