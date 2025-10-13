@@ -1,0 +1,77 @@
+{
+    "teams": 7,
+    "activities": [
+        {
+            "name": "חידון אישים",
+            "location": "משרד",
+            "makeWorksheet": true,
+            "rows": 15,
+			"numberTable": true,
+            "pointsPerRow": 0
+        },
+        {
+            "name": "חידות בזק",
+            "location": "כימיה",
+            "makeWorksheet": true,
+            "rows": 11,
+			"numberTable": false,
+            "pointsPerRow": 2
+        },
+        {
+            "name": "חידות בזק 2",
+            "location": "כימיה",
+            "makeWorksheet": true,
+            "rows": 2,
+			"numberTable": true,
+            "pointsPerRow": 0
+        },
+        {
+            "name": "הרכבת מילה",
+            "location": "כימיה",
+            "makeWorksheet": true,
+            "rows": 11,
+			"numberTable": false,
+            "pointsPerRow": 3
+        },
+        {
+            "name": "האודיסיאי המשוגע",
+            "location": "גן אקולוגי",
+            "makeWorksheet": true,
+            "rows": 15,
+			"numberTable": false,
+            "pointsPerRow": 5
+        },
+        {
+            "name": "השלמת שירים",
+            "location": "אמדו-סגו",
+            "makeWorksheet": true,
+            "rows": 29,
+			"numberTable": false,
+            "pointsPerRow": 1
+        },
+        {
+            "name": "פירמידה אנושית",
+            "location": "הדשא של אסט",
+            "makeWorksheet": true,
+            "rows": 15,
+			"numberTable": false,
+            "pointsPerRow": 2
+        },
+        {
+            "name": "הליכה יצירתית",
+            "location": "הספריה המרכזית",
+            "makeWorksheet": false,
+            "rows": 0,
+			"numberTable": false,
+            "pointsPerRow": 0
+        },
+        {
+            "name": "ריקודים",
+            "location": "יער קיסלק",
+            "makeWorksheet": false,
+            "rows": 0,
+			"numberTable": false,
+            "pointsPerRow": 0
+        }
+    ]
+}
