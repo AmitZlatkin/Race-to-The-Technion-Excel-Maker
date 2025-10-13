@@ -385,16 +385,17 @@ void setDeltaTimeFormulas(XLDocument& doc, XLWorksheet& wks, int teams) {
         cell->formula() = formula.str();
     }
 
-    auto dateTimeCells = getRange(wks, wks.cell(2, colShift+2), wks.cell(4, colShift+1+teams));;
+    std::tm tm;
+    tm.tm_year = 2025 - 1900; // Years since 1900
+    tm.tm_mon = 0; // January (0-based, so 0 means January)
+    tm.tm_mday = 1;
+    tm.tm_hour = 0;
+    tm.tm_min = 0;
+    tm.tm_sec = 0;
+    XLDateTime dt (tm);
+    
+    auto dateTimeCells = getRange(wks, wks.cell(2, colShift+2), wks.cell(3, colShift+1+teams));;
     for (auto cell : dateTimeCells) {
-        std::tm tm;
-        tm.tm_year = 2025 - 1900; // Years since 1900
-        tm.tm_mon = 0; // January (0-based, so 0 means January)
-        tm.tm_mday = 1;
-        tm.tm_hour = 0;
-        tm.tm_min = 0;
-        tm.tm_sec = 0;
-        XLDateTime dt (tm);
         cell.value() = dt;
     }
 }
