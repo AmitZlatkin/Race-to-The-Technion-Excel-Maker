@@ -296,6 +296,7 @@ void printHelpMessage(const string& progName) {
     printLine("The program was created by Amit Zlatkin, a graduate of the 11th class of Odyssey at the Techion, for the use of future generations.");
     printLine("For any issues, please contact me at amit.zlatkin@campus.technion.ac.il");
     printLine("For more information and for the most up-to-date version - check out the github repository at:");
+    printLine();
     printLine("    https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker");
     printLine();
 }
