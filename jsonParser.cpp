@@ -46,7 +46,7 @@ string getDefaultJsonString() {
         "activities": [
             {
                 "name": "Activity A",
-                "location": "Loaction A",
+                "location": "Location A",
                 "makeWorksheet": false,
                 "rows": 0,
                 "numberTable": false,
@@ -54,7 +54,7 @@ string getDefaultJsonString() {
             },
             {
                 "name": "Activity B",
-                "location": "Loaction B",
+                "location": "Location B",
                 "makeWorksheet": false,
                 "rows": 0,
                 "numberTable": false,
@@ -62,7 +62,7 @@ string getDefaultJsonString() {
             },
             {
                 "name": "Activity C",
-                "location": "Loaction C",
+                "location": "Location C",
                 "makeWorksheet": false,
                 "rows": 0,
                 "numberTable": false,
