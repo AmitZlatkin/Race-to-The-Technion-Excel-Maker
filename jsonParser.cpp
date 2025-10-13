@@ -83,9 +83,6 @@ string getJsonString(const string& jsonFilePath, bool autoQuitCMD) {
     string jsonString;
     if (!jsonFile.good()) {
         printLine("Error: Could not open JSON file: " + jsonFilePath + "\n");
-        jsonString = "";
-    }
-    if (jsonString == "") {
         custom_exit(1, autoQuitCMD);
     }
 

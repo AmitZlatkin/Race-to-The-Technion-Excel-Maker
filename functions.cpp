@@ -47,7 +47,7 @@ stringsPair readUserInput(int argc, const stringVector& argv, bool autoQuitCMD) 
     string jsonString;
     
     if (configFilename != "") {
-        jsonString = getJsonString(configFilename);
+        jsonString = getJsonString(configFilename, autoQuitCMD);
         printLine("Race was successfully configured based on json file.\n");
     } else {
 
