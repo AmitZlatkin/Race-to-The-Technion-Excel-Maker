@@ -77,11 +77,6 @@ string getDefaultJsonString() {
 }
 
 
-string getJsonString_HelperFunction(const string& jsonFilePath) {
-    
-}
-
-
 string getJsonString(const string& jsonFilePath, bool quitCMD) {
     std::ifstream jsonFile = std::ifstream(jsonFilePath);
 
@@ -90,15 +85,14 @@ string getJsonString(const string& jsonFilePath, bool quitCMD) {
         printLine("Error: Could not open JSON file: " + jsonFilePath + "\n");
         jsonString = "";
     }
+    if (jsonString == "") {
+        custom_exit(1, quitCMD);
+    }
 
     string row;
     while (!jsonFile.eof()) {
         getline(jsonFile, row);
         jsonString.append(row);
-    }
-
-    if (jsonString == "") {
-        custom_exit(1, quitCMD);
     }
     return jsonString;
 }
