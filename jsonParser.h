@@ -29,7 +29,7 @@ string getDefaultJsonString();
  * @param jsonFilePath the path to the JSON file
  * @return the content of the JSON file as a string
  */
-string getJsonString(const string& jsonFilePath);
+string getJsonString(const string& jsonFilePath, bool quitCMD = true);
 
 
 /**

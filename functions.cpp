@@ -39,7 +39,7 @@ stringsPair readUserInput_WIN(int argc, std::vector<string> argv, bool quitCMD) 
     string jsonString;
     
     if (configFilename != "") {
-        jsonString = getJsonString(configFilename);
+        jsonString = getJsonString(configFilename, false);
         printLine("Race was successfully configured based on json file.\n");
     } else {
 

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <algorithm>
 #include "jsonParser.h"
+#include "functions.h"
 
 using std::cout;
 using std::endl;
@@ -76,21 +77,29 @@ string getDefaultJsonString() {
 }
 
 
-string getJsonString(const string& jsonFilePath) {
+string getJsonString_HelperFunction(const string& jsonFilePath) {
+    
+}
+
+
+string getJsonString(const string& jsonFilePath, bool quitCMD) {
     std::ifstream jsonFile = std::ifstream(jsonFilePath);
 
+    string jsonString;
     if (!jsonFile.good()) {
-        cout << "Error: Could not open JSON file: " << jsonFilePath << "\n\n";
-        exit(1);
+        printLine("Error: Could not open JSON file: " + jsonFilePath + "\n");
+        jsonString = "";
     }
 
-    string jsonString;
     string row;
     while (!jsonFile.eof()) {
         getline(jsonFile, row);
         jsonString.append(row);
     }
 
+    if (jsonString == "") {
+        custom_exit(1, quitCMD);
+    }
     return jsonString;
 }
 
