@@ -1,19 +1,13 @@
 
 # Race to The Technion - Excel Score Sheet Generator
-<table><tr>
-<td>
-<div style="text-align: left"><img src="AppIcon.ico" alt="RaceXL App Icon" width="200"></div>
-</td>
-<td>
-<div style="align: right">
+
+<div align="center">
+<img src="AppIcon.ico" alt="RaceXL App Icon" width="150">
+</div>
 
 Created by Amit Zlatkin, a graduate of the 11th class of Odyssey at the Technion, for the use of future generations.\
 For any issues, contact me at [amit.zlatkin@campus.technion.ac.il](amit.zlatkin@campus.technion.ac.il).\
-This [github repository](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker) has all information about the app.\
-The most up-to-date version under '[Releases](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker/releases)'.
-</div>
-</td>
-</tr></table>
+This [repository](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker) includes all information about the app, with the most up-to-date version available under [Releases](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker/releases) to be downloaded directly.
 
 ## Table of Contents:
 - [Intro](#intro)
@@ -35,7 +29,7 @@ The 'Scores' sheet will automatically calculate the total scores for each team b
 Activity sheets will include unformatted checkboxes or numeric input fields for score entry, depending on the activity type, and are named according to the activity names provided in the configuration.\
 If an activity has a sheet, a formula will be added to the 'Scores' sheet to calculate points based on the activity's scoring rules.
 
-**The program is available two executable files:**
+**The program is available in two executable files:**
 * [**Linux based**](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker/blob/main/RaceXL)
 * [**Windows based (.exe)**](https://github.com/AmitZlatkin/Race-to-The-Technion-Excel-Maker/blob/main/RaceXL.exe)
 
@@ -55,32 +49,34 @@ You can see an [example JSON at the end](#example-json-configuration).
 
 ## Usage:
 ### On Linux:
+Use the following command to launch the app from a terminal:
 ```sh
 ./RaceXL [help option] [name options] [configuration options]
 ```
 ### On Windows:
+Use the following command to launch the app from a terminal:
 ```sh
 ./RaceXL.exe [help option] [name options] [configuration options]
 ```
-Or just click the app icon (the terminal will be opened automatically).
+Or click the app icon (the terminal will open automatically).
 ### Options:
 ```sh
 --help, -h
 ```
-Show the help message and exit.
+Print the help message and exit the program.
 This option must be the first flag if provided.
 ```sh
 --name, -n
 ```
-Use custom output filename.\
+Use a custom output filename.\
 This option must be followed by the desired output filename.\
 If no name options are provided, the output file will be named 'race_to_the_technion.xlsx'.\
 Note: The output filename should not include the .xlsx extension, as it will be added automatically.
 ```sh
 --default, -d
 ```
-Use default configuration without prompting. No need to specify json file.\
-If no configuration options are provided, the program will prompt the user whether to use the default configuration or not.\
+Use the default configuration without prompting. No need to specify the JSON file.\
+If no configuration options are provided, the program prompts the user whether to use the default configuration or not.\
 If both name options and configuration options are provided, the program will use the specified name and configuration file.
 
 ### All possible commands:
