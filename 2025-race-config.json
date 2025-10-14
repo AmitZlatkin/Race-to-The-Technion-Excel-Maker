@@ -34,6 +34,14 @@
             "pointsPerRow": 3
         },
         {
+            "name": "גילו את המילה?",
+            "location": "כימיה",
+            "makeWorksheet": true,
+            "rows": 1,
+			"numberTable": false,
+            "pointsPerRow": 10
+        },
+        {
             "name": "האודיסיאי המשוגע",
             "location": "גן אקולוגי",
             "makeWorksheet": true,
