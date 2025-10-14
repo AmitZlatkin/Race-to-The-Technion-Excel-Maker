@@ -11,7 +11,7 @@ OBJS = $(addprefix $(BUILD_DIR)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUIL
 
 # Windows:
 COMPILER_V_WIN = x86_64-w64-mingw32-g++
-FLAGS_WIN = -std=c++17 -g -static-libstdc++
+FLAGS_WIN = -std=c++17 -g -static-libstdc++ -static-libgcc
 TARGET_WIN = RaceXL.exe
 BUILD_DIR_WIN = build-Win
 OBJS_WIN = $(addprefix $(BUILD_DIR_WIN)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUILD_DIR_WIN)/, main-win.o RaceActivity.o jsonParser.o functions.o) resources.res
