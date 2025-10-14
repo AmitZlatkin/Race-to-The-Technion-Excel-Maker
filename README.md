@@ -54,11 +54,11 @@ Use the following command to launch the app from a terminal:
 ./RaceXL [help option] [name options] [configuration options]
 ```
 ### On Windows:
-Use the following command to launch the app from a terminal:
-```sh
-./RaceXL.exe [help option] [name options] [configuration options]
-```
-Or click the app icon (the terminal will open automatically).
+On Windows, there are two ways of using the app:
+1. Click on the app icon (the terminal will open automatically).
+2. Use the same command as in Linux to launch the app from a terminal (reverse the '/' if necessary).
+
+For a better experience, it is recommended to use the launchable app and not the terminal.
 ### Options:
 ```sh
 --help, -h
