@@ -1,0 +1,90 @@
+#include "RaceXL.h"
+#include "UtilsFunctions.h"
+#include "libXL/OpenXLSX.hpp"
+#include "RaceActivity.h"
+#include "JsonParser.h"
+#include "XL_Functions.h"
+#include "AutoQuitShell.h"
+
+using std::cout;
+using std::endl;
+using std::string;
+using namespace OpenXLSX;
+
+
+RaceXL::RaceXL(bool autoQuitShell) {
+    AutoQuitShell::_autoQuitShell = autoQuitShell;
+}
+
+
+void RaceXL::readShellInput(int argc, char** argv) {
+
+    stringVector conv_argv;
+    
+    if (AutoQuitShell::_autoQuitShell) {
+        conv_argv = convertArgv(argc, argv);
+        this->processedUserInput = readUserInput(conv_argv.size(), conv_argv);
+        return;
+    }
+
+    string userInput;
+    printLine();
+    printLine("Please enter the command line arguments (or press Enter to use default configuration):");
+    printLine();
+    printLine("./RaceXL.exe", ' ');
+    std::getline(std::cin, userInput);
+    if (!userInput.empty()) {
+        userInput = "./RaceXL.exe " + userInput + " ";  // " " to ensure the last argument is read correctly
+        conv_argv = splitString(userInput);
+    } else {
+        conv_argv.push_back("./RaceXL.exe");
+    }
+    
+    this->processedUserInput = readUserInput(conv_argv.size(), conv_argv);
+}
+
+
+void RaceXL::execute() const {
+    const stringsPair& processedUserInput = this->processedUserInput;
+
+    string jsonString = processedUserInput.first;
+    string outputFilename = processedUserInput.second;
+
+    std::vector<RaceActivity> activities;
+    int teams = 0;
+    parseFullJsonString(jsonString, teams, activities);
+
+    printLine("Opening '" + makeHebrewReadable(outputFilename) + ".xlsx" + "' Excel Document...");
+    XLDocument doc;
+    doc.create(outputFilename + ".xlsx", XLForceOverwrite);
+    auto race_excel = doc.workbook();
+    printLine("'" + makeHebrewReadable(outputFilename) + ".xlsx" + "' Excel Document Opened\n");
+
+    XL_Functions::cleanWorkbook(race_excel, outputFilename);
+
+    auto scores_wks = race_excel.worksheet("ניקוד");
+    XL_Functions::initScoresWorksheet(doc, scores_wks, teams, activities.size());
+    XL_Functions::setTotalFormulas(scores_wks, teams, activities.size()+2);
+
+    for (int i = 0; i < activities.size(); ++i) {
+        const auto& activityData = activities[i];
+        int activityRow = i + 2;
+
+        scores_wks.cell(activityRow, 1).value() = activityData.m_name;
+        scores_wks.cell(activityRow, 2).value() = activityData.m_location;
+
+        if (!activityData.m_makeWorksheet) {
+            continue;
+        }
+
+        race_excel.addWorksheet(activityData.m_name);
+        auto activity_wks = race_excel.worksheet(activityData.m_name);
+        XL_Functions::initActivityWorksheet(activity_wks, teams, activityData.m_rows, activityData.m_numberTable);
+        XL_Functions::setActivityFormulas(scores_wks, teams, activityRow, activityData);
+    }
+
+    printLine("Saving '" + makeHebrewReadable(outputFilename) + ".xlsx" + "' Excel Document...");
+    doc.save();
+    doc.close();
+    printLine("Done!\n");
+}
