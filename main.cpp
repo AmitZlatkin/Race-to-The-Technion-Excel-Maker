@@ -6,7 +6,7 @@
 #include "functions.h"
 #include "libXL/OpenXLSX.hpp"
 #include "RaceActivity.h"
-#include "jsonParser.h"
+#include "JsonParser.h"
 
 using std::cout;
 using std::endl;

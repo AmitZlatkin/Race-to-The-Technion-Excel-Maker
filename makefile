@@ -7,14 +7,14 @@ COMPILER_V = g++
 FLAGS = -std=c++17 -g
 TARGET = RaceXL
 BUILD_DIR = build
-OBJS = $(addprefix $(BUILD_DIR)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUILD_DIR)/, main.o RaceActivity.o jsonParser.o functions.o)
+OBJS = $(addprefix $(BUILD_DIR)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUILD_DIR)/, main.o RaceActivity.o JsonParser.o functions.o)
 
 # Windows:
 COMPILER_V_WIN = x86_64-w64-mingw32-g++
 FLAGS_WIN = -std=c++17 -g -static-libstdc++ -static-libgcc
 TARGET_WIN = RaceXL.exe
 BUILD_DIR_WIN = build-Win
-OBJS_WIN = $(addprefix $(BUILD_DIR_WIN)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUILD_DIR_WIN)/, main-win.o RaceActivity.o jsonParser.o functions.o) resources.res
+OBJS_WIN = $(addprefix $(BUILD_DIR_WIN)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUILD_DIR_WIN)/, main-win.o RaceActivity.o JsonParser.o functions.o) resources.res
 
 
 # Linux:
@@ -37,7 +37,7 @@ $(BUILD_DIR)/functions.o: functions.cpp
 $(BUILD_DIR)/RaceActivity.o: RaceActivity.cpp
 	$(COMPILER_V) $(FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/jsonParser.o: jsonParser.cpp
+$(BUILD_DIR)/JsonParser.o: JsonParser.cpp
 	$(COMPILER_V) $(FLAGS) -c $< -o $@
 
 # Compile source files into object files using a pattern rule
@@ -61,7 +61,7 @@ $(BUILD_DIR_WIN)/functions.o: functions.cpp
 $(BUILD_DIR_WIN)/RaceActivity.o: RaceActivity.cpp
 	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@
 
-$(BUILD_DIR_WIN)/jsonParser.o: jsonParser.cpp
+$(BUILD_DIR_WIN)/JsonParser.o: JsonParser.cpp
 	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@
 
 # Compile source files into object files using a pattern rule
