@@ -6,6 +6,7 @@
 #include <utility>
 #include <string>
 #include <sstream>
+#include "RaceActivity.h"
 
 using std::string;
 using std::cout;

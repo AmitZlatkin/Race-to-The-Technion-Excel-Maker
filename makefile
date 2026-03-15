@@ -2,7 +2,7 @@
 SOURCE_DIR = libXL
 LibXL_FILE_LIST = XLCell.cpp XLCellIterator.cpp XLCellRange.cpp XLCellReference.cpp XLCellValue.cpp XLColor.cpp XLColumn.cpp XLComments.cpp XLContentTypes.cpp XLDateTime.cpp XLDocument.cpp XLDrawing.cpp XLFormula.cpp XLMergeCells.cpp XLProperties.cpp XLRelationships.cpp XLRow.cpp XLRowData.cpp XLSharedStrings.cpp XLSheet.cpp XLStyles.cpp XLTables.cpp XLWorkbook.cpp XLXmlData.cpp XLXmlFile.cpp XLXmlParser.cpp XLZipArchive.cpp
 
-MAIN_CODE_FILES = main.cpp RaceActivity.cpp JsonParser.cpp UtilsFunctions.cpp XL_Functions.cpp RaceXL.cpp
+MAIN_CODE_FILES = main.cpp RaceActivity.cpp JsonParser.cpp UtilsFunctions.cpp XL_Functions.cpp RaceXL.cpp AutoQuitShell.cpp
 
 # Linux:
 COMPILER_V = g++
@@ -16,7 +16,7 @@ COMPILER_V_WIN = x86_64-w64-mingw32-g++
 FLAGS_WIN = -std=c++17 -g -static-libstdc++ -static-libgcc -DWIN
 TARGET_WIN = RaceXL.exe
 BUILD_DIR_WIN = build-Win
-OBJS_WIN = $(addprefix $(BUILD_DIR_WIN)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUILD_DIR)/, $(MAIN_CODE_FILES:.cpp=.o)) resources.res
+OBJS_WIN = $(addprefix $(BUILD_DIR_WIN)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUILD_DIR_WIN)/, $(MAIN_CODE_FILES:.cpp=.o)) resources.res
 
 
 # Linux:
@@ -48,6 +48,9 @@ $(BUILD_DIR)/XL_Functions.o: XL_Functions.cpp
 $(BUILD_DIR)/RaceXL.o: RaceXL.cpp
 	$(COMPILER_V) $(FLAGS) -c $< -o $@
 
+$(BUILD_DIR)/AutoQuitShell.o: AutoQuitShell.cpp
+	$(COMPILER_V) $(FLAGS) -c $< -o $@
+
 # Compile source files into object files using a pattern rule
 $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.cpp
 	$(COMPILER_V) $(FLAGS) -c $< -o $@
@@ -76,6 +79,9 @@ $(BUILD_DIR_WIN)/XL_Functions.o: XL_Functions.cpp
 	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@
 
 $(BUILD_DIR_WIN)/RaceXL.o: RaceXL.cpp
+	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@
+
+$(BUILD_DIR_WIN)/AutoQuitShell.o: AutoQuitShell.cpp
 	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@
 
 # Compile source files into object files using a pattern rule
