@@ -76,13 +76,13 @@ string JsonParser::getDefaultJsonString() {
 }
 
 
-string JsonParser::getJsonString(const string& jsonFilePath, bool autoQuitCMD) {
+string JsonParser::getJsonString(const string& jsonFilePath) {
     std::ifstream jsonFile = std::ifstream(jsonFilePath);
 
     string jsonString;
     if (!jsonFile.good()) {
         printLine("Error: Could not open JSON file: " + jsonFilePath + "\n");
-        custom_exit(1, autoQuitCMD);
+        custom_exit(1);
     }
 
     string row;
