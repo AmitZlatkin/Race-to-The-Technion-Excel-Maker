@@ -1,11 +1,14 @@
+
 #ifndef RACE_ACTIVITY_H
 #define RACE_ACTIVITY_H
 
-#include <string>
+#include <string> // for 'std::string'
+
 using std::string;
 
+
 /**
- * RaceActivity: A struct to hold information
+ * A struct to hold information about a specific activity during the race.
  * 
  * @param m_name The name of the activity
  * @param m_location The location of the activity
@@ -18,12 +21,12 @@ using std::string;
  */
 struct RaceActivity
 {
-    string m_name;
-    string m_location;
-    bool m_makeWorksheet;
-    int m_rows;
-    bool m_numberTable;
-    int m_pointsPerRow;
+    string m_name; /**< The name of the activity */
+    string m_location; /**< The location of the activity */
+    bool m_makeWorksheet; /**< Whether to create a worksheet for this activity */
+    int m_rows; /**< The number of rows (participants) in the activity */
+    bool m_numberTable; /**< Whether the activity is a number table (true) or a checkbox table (false) */
+    int m_pointsPerRow; /**< The points per row (used if not a number table) */
 
     /**
      * Default constructor
@@ -44,3 +47,5 @@ struct RaceActivity
 };
 
 #endif // RACE_ACTIVITY_H
+
+

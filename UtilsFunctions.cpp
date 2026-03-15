@@ -1,15 +1,43 @@
 
 #include "UtilsFunctions.h"
-#include "JsonParser.h"
-#include "AutoQuitShell.h"
-#include <ctime>
 
-void parseFullJsonString(const string& jsonString, int& teams, std::vector<RaceActivity>& activities) {
-    JsonParser::parseFullJsonString(jsonString, teams, activities);
+#include <iostream>        // for 'cin' and 'cout'
+#include <sstream>         // for 'istringstream'
+#include <locale>          // for wide chars and wide strings
+#include <codecvt>         // for wide chars and wide strings
+#include <algorithm>       // for 'std::reverse'
+#include "JsonParser.h"    // for it's part in reading the input
+#include "AutoQuitShell.h" // for access to 'AutoQuitShell::_autoQuitShell'
+
+using std::cout;
+using std::endl;
+
+
+// Checks if a single wide character is Hebrew
+bool isHebrewChar(wchar_t ch) {
+    return (ch >= 0x0590 && ch <= 0x05FF);
 }
 
+
+// Checks if a wide string contains any Hebrew characters
+bool containsHebrew(const std::wstring& winput) {
+    for (wchar_t ch : winput) {
+        if (isHebrewChar(ch)) {
+            return true; // At least one Hebrew character found
+        }
+    }
+    return false;
+}
+
+
 string makeHebrewReadable(const string& hebText) {
-    return JsonParser::makeHebrewReadable(hebText);
+    // Convert UTF-8 string to wide string
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+    std::wstring w_text = converter.from_bytes(hebText);
+    if (containsHebrew(w_text)) {
+        std::reverse(w_text.begin(), w_text.end());
+    }
+    return converter.to_bytes(w_text);
 }
 
 

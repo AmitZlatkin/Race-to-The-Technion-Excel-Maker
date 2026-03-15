@@ -1,21 +1,27 @@
-#include "UtilsFunctions.h"
-#include "AutoQuitShell.h"
-#include "RaceXL.h"
 
+#include "UtilsFunctions.h" // for 'pribtLine'
+#include "AutoQuitShell.h"  // for access to 'AutoQuitShell::_autoQuitShell'
+#include "RaceXL.h"         // for 'RaceXL'
+#include <iostream>         // for 'std::cin'
 
+// different behavior on different platforms
+// on windows - the program can be run from te terminal and via the app icon.
+// on linux - currently only the terminal is supported.
 #ifdef WIN
 #define auto_quit_shell_flag argc>1
 #else
 #define auto_quit_shell_flag true
 #endif
 
+
 int main(int argc, char** argv) {
     
     RaceXL xlCreator(auto_quit_shell_flag);
 
     xlCreator.readShellInput(argc, argv);
-    xlCreator.execute();
+    xlCreator.setupExcelFile();
 
+    // additional logic for running via windows app icon
     #ifdef WIN
     if (!AutoQuitShell::_autoQuitShell) {
         printLine("Press Enter to quit...");
@@ -25,4 +31,5 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+
 

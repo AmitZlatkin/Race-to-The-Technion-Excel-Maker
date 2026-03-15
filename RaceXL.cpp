@@ -1,10 +1,12 @@
+
 #include "RaceXL.h"
-#include "UtilsFunctions.h"
-#include "libXL/OpenXLSX.hpp"
-#include "RaceActivity.h"
-#include "JsonParser.h"
-#include "XL_Functions.h"
-#include "AutoQuitShell.h"
+
+#include "libXL/OpenXLSX.hpp" // for the namespace 'OpenXLSX'
+#include "UtilsFunctions.h"   // for the different utilities
+#include "XL_Functions.h"     // for working cleanly with the excel file during 'setupExcelFile'
+#include "JsonParser.h"       // for reading the json part of the input
+#include "RaceActivity.h"     // for 'RaceActivity'
+#include "AutoQuitShell.h"    // for access to 'AutoQuitShell::_autoQuitShell'
 
 using std::cout;
 using std::endl;
@@ -44,7 +46,7 @@ void RaceXL::readShellInput(int argc, char** argv) {
 }
 
 
-void RaceXL::execute() const {
+void RaceXL::setupExcelFile() const {
     const stringsPair& processedUserInput = this->processedUserInput;
 
     string jsonString = processedUserInput.first;
@@ -52,7 +54,7 @@ void RaceXL::execute() const {
 
     std::vector<RaceActivity> activities;
     int teams = 0;
-    parseFullJsonString(jsonString, teams, activities);
+    JsonParser::parseFullJsonString(jsonString, teams, activities);
 
     printLine("Opening '" + makeHebrewReadable(outputFilename) + ".xlsx" + "' Excel Document...");
     XLDocument doc;
@@ -66,6 +68,7 @@ void RaceXL::execute() const {
     XL_Functions::initScoresWorksheet(doc, scores_wks, teams, activities.size());
     XL_Functions::setTotalFormulas(scores_wks, teams, activities.size()+2);
 
+    // using index i and not range-based-for or iterators because the index is also needed
     for (int i = 0; i < activities.size(); ++i) {
         const auto& activityData = activities[i];
         int activityRow = i + 2;
@@ -88,3 +91,5 @@ void RaceXL::execute() const {
     doc.close();
     printLine("Done!\n");
 }
+
+

@@ -1,16 +1,13 @@
+
 #ifndef UTILS_FUNCTIONS_H
 #define UTILS_FUNCTIONS_H
 
-#include <iostream>
-#include <vector>
-#include <utility>
-#include <string>
-#include <sstream>
-#include "RaceActivity.h"
+#include <string>         // for 'std::string'
+#include <vector>         // for 'std::vector'
+#include <utility>        // for 'std::pair'
+#include "RaceActivity.h" // for 'RaceActivity'
 
 using std::string;
-using std::cout;
-using std::endl;
 using stringVector = std::vector<string>;
 using stringsPair = std::pair<string, string>;
 
@@ -18,51 +15,60 @@ using stringsPair = std::pair<string, string>;
 static const string defaultOutputFilename = "race-to-the-technion-scores";
 
 
-void parseFullJsonString(const string& jsonString, int& teams, std::vector<RaceActivity>& activities);
-
+/**
+ * Make a UTF-8 string readable in Hebrew by reversing it if it contains Hebrew characters.
+ * 
+ * @param hebText the input UTF-8 string.
+ * 
+ * @return The reversed string if it contains Hebrew characters, otherwise returns the original string.
+ */
 string makeHebrewReadable(const string& hebText);
 
 
-
 /**
- * convertArgv: convert argv from char** to vector<string>
- * @param argc argc that main() got
- * @param argv argv that main() got
- * @return the converted argv
+ * Convert argv from char** to std::vector<std::string>.
+ * 
+ * @param argc argc that main() got.
+ * @param argv argv that main() got.
+ * 
+ * @return A vector of strings that represents argv.
  */
 stringVector convertArgv(int argc, char** argv);
 
 
 /**
- * splitString: split a string by a delimiter
- * @param str the string to split
- * @return a vector of strings, split by whitespace
+ * Split a string by whitespace.
+ * 
+ * @param str the string to split.
+ * 
+ * @return A vector of strings, split by whitespace.
  */
 stringVector splitString(const string& str);
 
 
 /**
- * custom_exit: use exit() function with extra steps
- * @param ret the value to give to exit()
+ * Use the exit() function with extra steps. Used in the App Icon version on windows.
+ * 
+ * @param ret The value to give to exit().
  */
 void custom_exit(int ret);
 
 
 /**
- * readUserInput: read user input from command line or prompt for default configuration
+ * Read the user input from the command line, and, if needend, prompt for the default configuration.
  * 
- * @param argc the number of command line arguments
- * @param argv the command line arguments
+ * @param argc the number of command line arguments.
+ * @param argv the command line arguments.
  * 
- * @return a pair containing the json configuration string and the output filename
+ * @return A pair containing the json configuration string and the output filename.
  */
 stringsPair readUserInput(int argc, const stringVector& argv);
 
 
 /**
- * checkArguments: check the command line arguments for validity and set flags accordingly
+ * Check the command line arguments for validity and set flags accordingly
  * 
- * possible flags:
+ * #### Possible flags:
  * 
  * - <file>.json : path to the json configuration file. If not provided, user will be prompted to use default configuration
  * 
@@ -76,7 +82,7 @@ stringsPair readUserInput(int argc, const stringVector& argv);
  * @param argv the command line arguments
  * @param flag_default reference to a boolean that will be set to true if the default flag is set
  * 
- * @return a pair containing the output filename (or default if not provided) and the json filename (or empty string if not provided)
+ * @return A pair containing the output filename (or default if not provided) and the json filename (or empty string if not provided)
  */
 stringsPair checkArguments(int argc, const stringVector& argv, bool& flag_default);
 
@@ -109,3 +115,5 @@ void printLine(const string& str = "", char end = '\n');
 
 
 #endif // UTILS_FUNCTIONS_H
+
+

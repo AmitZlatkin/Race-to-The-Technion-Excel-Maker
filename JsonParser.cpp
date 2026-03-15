@@ -1,42 +1,13 @@
-#include <iostream>
-#include <fstream>
-#include <locale>
-#include <codecvt>
-#include <sstream>
-#include <algorithm>
+
 #include "JsonParser.h"
-#include "UtilsFunctions.h"
+
+#include <iostream>         // for 'cin' and 'cout'
+#include <fstream>          // for 'istream' and 'getLine'
+#include "UtilsFunctions.h" // for 'printLine' and 'custom_exit'
 
 using std::cout;
 using std::endl;
 using std::string;
-
-
-// Checks if a single wide character is Hebrew
-bool isHebrewChar(wchar_t ch) {
-    return (ch >= 0x0590 && ch <= 0x05FF);
-}
-
-// Checks if a wide string contains any Hebrew characters
-bool containsHebrew(const std::wstring& winput) {
-    for (wchar_t ch : winput) {
-        if (isHebrewChar(ch)) {
-            return true; // At least one Hebrew character found
-        }
-    }
-    return false;
-}
-
-
-string JsonParser::makeHebrewReadable(const string& text) {
-    // Convert UTF-8 string to wide string
-    std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-    std::wstring w_text = converter.from_bytes(text);
-    if (containsHebrew(w_text)) {
-        std::reverse(w_text.begin(), w_text.end());
-    }
-    return converter.to_bytes(w_text);
-}
 
 
 string JsonParser::getDefaultJsonString() {
@@ -101,6 +72,7 @@ string trim(const string& s) {
     return (start == string::npos) ? "" : s.substr(start, end - start + 1);
 }
 
+
 // Parses a string like: "some string"
 string parseString(const string& s, int& pos) {
     string result;
@@ -112,6 +84,7 @@ string parseString(const string& s, int& pos) {
     return result;
 }
 
+
 // Parses a primitive (number or boolean)
 string parsePrimitive(const string& s, int& pos) {
     string result;
@@ -121,11 +94,11 @@ string parsePrimitive(const string& s, int& pos) {
     return trim(result);
 }
 
-// Skip whitespace and commas
+
+// Skip whitespace and commas - advance 'pos' while 's[pos]' is whitespace  or a comma
 void skipWhitespaceAndComma(const string& s, int& pos) {
     while (pos < s.size() && (isspace(s[pos]) || s[pos] =='\n' || s[pos] == ',')) ++pos;
 }
-
 
 
 void JsonParser::parseFullJsonString(const string& jsonString, int& teams, std::vector<RaceActivity>& activities) {

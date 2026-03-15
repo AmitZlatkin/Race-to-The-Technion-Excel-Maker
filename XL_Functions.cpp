@@ -1,5 +1,8 @@
+
 #include "XL_Functions.h"
-#include "UtilsFunctions.h"
+
+#include "UtilsFunctions.h" // for the different utilities
+#include <sstream>          // for 'stringstream'
 
 
 void XL_Functions::cleanWorkbook(XLWorkbook& wb, const string& outputFilename) {
@@ -189,3 +192,5 @@ void XL_Functions::styleRow(XLDocument& doc, XLCellRange& row, const XLColor& fo
     
     row.setFormat(newStyle);
 }
+
+
