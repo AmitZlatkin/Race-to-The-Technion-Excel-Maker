@@ -16,51 +16,51 @@ static const string defaultOutputFilename = "race-to-the-technion-scores";
 
 
 /**
- * Make a UTF-8 string readable in Hebrew by reversing it if it contains Hebrew characters.
+ * Make a UTF-8 string readable in Hebrew by reversing it if it contains Hebrew characters
  * 
- * @param hebText the input UTF-8 string.
+ * @param hebText the input UTF-8 string
  * 
- * @return The reversed string if it contains Hebrew characters, otherwise returns the original string.
+ * @return The reversed string if it contains Hebrew characters, otherwise returns the original string
  */
 string makeHebrewReadable(const string& hebText);
 
 
 /**
- * Convert argv from char** to std::vector<std::string>.
+ * Convert argv from char** to std::vector<std::string>
  * 
- * @param argc argc that main() got.
- * @param argv argv that main() got.
+ * @param argc argc that main() got
+ * @param argv argv that main() got
  * 
- * @return A vector of strings that represents argv.
+ * @return A vector of strings that represents argv
  */
 stringVector convertArgv(int argc, char** argv);
 
 
 /**
- * Split a string by whitespace.
+ * Split a string by whitespace
  * 
- * @param str the string to split.
+ * @param str the string to split
  * 
- * @return A vector of strings, split by whitespace.
+ * @return A vector of strings, split by whitespace
  */
 stringVector splitString(const string& str);
 
 
 /**
- * Use the exit() function with extra steps. Used in the App Icon version on windows.
+ * Use the exit() function with extra steps, allows the desired behavior in the App Icon version on windows
  * 
- * @param ret The value to give to exit().
+ * @param ret The value to give to exit()
  */
 void custom_exit(int ret);
 
 
 /**
- * Read the user input from the command line, and, if needend, prompt for the default configuration.
+ * Read the user input from the command line, and, if needend, prompt for the default configuration
  * 
- * @param argc the number of command line arguments.
- * @param argv the command line arguments.
+ * @param argc the number of command line arguments
+ * @param argv the command line arguments
  * 
- * @return A pair containing the json configuration string and the output filename.
+ * @return A pair containing the json configuration string and the output filename
  */
 stringsPair readUserInput(int argc, const stringVector& argv);
 
@@ -70,13 +70,13 @@ stringsPair readUserInput(int argc, const stringVector& argv);
  * 
  * #### Possible flags:
  * 
- * - <file>.json : path to the json configuration file. If not provided, user will be prompted to use default configuration
+ * - <file>.json : path to the json configuration file. If not provided, user will be prompted to use default configuration.
  * 
- * - -d, --default : use default configuration without prompting
+ * - -d, --default : use default configuration without prompting.
  * 
- * - -n, --name : specify the name of the output file
+ * - -n, --name : specify the name of the output file.
  * 
- * - -h, --help : print help message and exit
+ * - -h, --help : print help message and exit.
  * 
  * @param argc the number of command line arguments
  * @param argv the command line arguments
@@ -88,7 +88,8 @@ stringsPair checkArguments(int argc, const stringVector& argv, bool& flag_defaul
 
 
 /**
- * findFlag: find the index of a flag in the command line arguments
+ * Find the index of a flag in the command line arguments
+ * 
  * @param argc the number of command line arguments
  * @param argv the command line arguments
  * @param flag_v1 the first version of the flag to search for
@@ -100,16 +101,18 @@ int findFlag(int argc, const stringVector& argv, const string& flag_v1, const st
 
 
 /**
- * @brief print the help message to the console
- * @param progName the name of the program (usually argv[0])
+ * Print the help message to the console
+ * 
+ * @param progName the name of the program (usually just argv[0] but not always)
  */
 void printHelpMessage(const string& progName);
 
 
 /**
  * printLine: print a line to the console
+ * 
  * @param str the string to print
- * @param end the line ending character (default: '\n')
+ * @param end the line ending character (default: '\\n')
  */
 void printLine(const string& str = "", char end = '\n');
 

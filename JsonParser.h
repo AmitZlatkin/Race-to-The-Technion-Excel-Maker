@@ -10,9 +10,9 @@ using std::string;
 
 
 /**
- * @brief A class o handle the reading of the json.
+ * @brief A class o handle the reading of the json
  * 
- * @note This class isn't responsible for reading the entire input, only for the correct handling of the json part.
+ * @note This class isn't responsible for reading the entire input, only for the correct handling of the json part
  */
 class JsonParser
 {

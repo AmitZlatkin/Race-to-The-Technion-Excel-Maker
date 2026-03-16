@@ -8,7 +8,7 @@ using std::string;
 
 
 /**
- * A struct to hold information about a specific activity during the race.
+ * A struct to hold information about a specific activity during the race
  * 
  * @param m_name The name of the activity
  * @param m_location The location of the activity
