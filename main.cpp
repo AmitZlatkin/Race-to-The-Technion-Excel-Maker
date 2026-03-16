@@ -1,6 +1,6 @@
 
 #include "UtilsFunctions.h" // for 'pribtLine'
-#include "AutoQuitShell.h"  // for access to 'AutoQuitShell::_autoQuitShell'
+#include "AutoQuitShell.h"  // for access to 'AutoQuitShell'
 #include "RaceXL.h"         // for 'RaceXL'
 #include <iostream>         // for 'std::cin'
 
@@ -16,7 +16,7 @@
 
 int main(int argc, char** argv) {
 
-    AutoQuitShell::_autoQuitShell = auto_quit_shell_flag;
+    AutoQuitShell::getInstance().setFlag(auto_quit_shell_flag);
     
     RaceXL xlCreator;
 
@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
 
     // additional logic for running via windows app icon
     #ifdef WIN
-    if (!AutoQuitShell::_autoQuitShell) {
+    if (!AutoQuitShell::getInstance().getFlag()) {
         printLine("Press Enter to quit...");
         std::cin.ignore(); // Waits for Enter (ignores one line of input)
     }

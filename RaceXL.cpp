@@ -6,7 +6,7 @@
 #include "XL_Functions.h"     // for working cleanly with the excel file during 'setupExcelFile'
 #include "JsonParser.h"       // for reading the json part of the input
 #include "RaceActivity.h"     // for 'RaceActivity'
-#include "AutoQuitShell.h"    // for access to 'AutoQuitShell::_autoQuitShell'
+#include "AutoQuitShell.h"    // for access to 'AutoQuitShell'
 
 using std::cout;
 using std::endl;
@@ -18,7 +18,7 @@ void RaceXL::readShellInput(int argc, char** argv) {
 
     stringVector conv_argv;
     
-    if (AutoQuitShell::_autoQuitShell) {
+    if (AutoQuitShell::getInstance().getFlag()) {
         conv_argv = convertArgv(argc, argv);
         this->processedUserInput = readUserInput(conv_argv);
         return;

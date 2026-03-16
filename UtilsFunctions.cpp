@@ -7,7 +7,7 @@
 #include <codecvt>         // for wide chars and wide strings
 #include <algorithm>       // for 'std::reverse'
 #include "JsonParser.h"    // for it's part in reading the input
-#include "AutoQuitShell.h" // for access to 'AutoQuitShell::_autoQuitShell'
+#include "AutoQuitShell.h" // for access to 'AutoQuitShell'
 
 using std::cout;
 using std::endl;
@@ -51,8 +51,7 @@ stringVector convertArgv(int argc, char** argv) {
 
 
 void custom_exit(int ret) {
-    bool autoQuitShell = AutoQuitShell::_autoQuitShell;
-    if (!autoQuitShell) {
+    if (!AutoQuitShell::getInstance().getFlag()) {
         string dummy;
         printLine("Press Enter to quit...");
         std::getline(std::cin, dummy);
