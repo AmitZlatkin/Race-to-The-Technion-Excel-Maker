@@ -13,7 +13,7 @@ OBJS = $(addprefix $(BUILD_DIR)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUIL
 
 # Windows:
 COMPILER_V_WIN = x86_64-w64-mingw32-g++
-FLAGS_WIN = -std=c++17 -g -static-libstdc++ -static-libgcc -DWIN
+FLAGS_WIN = -std=c++17 -g -static-libstdc++ -static-libgcc
 TARGET_WIN = RaceXL.exe
 BUILD_DIR_WIN = build-Win
 OBJS_WIN = $(addprefix $(BUILD_DIR_WIN)/, $(LibXL_FILE_LIST:.cpp=.o)) $(addprefix $(BUILD_DIR_WIN)/, $(MAIN_CODE_FILES:.cpp=.o)) resources.res
@@ -64,7 +64,7 @@ $(TARGET_WIN): $(OBJS_WIN)
 	echo "\nBuild complete: $(TARGET_WIN)\n"
 
 $(BUILD_DIR_WIN)/main.o: main.cpp
-	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@
+	$(COMPILER_V_WIN) $(FLAGS_WIN) -DWIN -c $< -o $@
 
 $(BUILD_DIR_WIN)/RaceActivity.o: RaceActivity.cpp
 	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@
