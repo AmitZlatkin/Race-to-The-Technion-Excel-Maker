@@ -14,11 +14,6 @@ using std::string;
 using namespace OpenXLSX;
 
 
-RaceXL::RaceXL(bool autoQuitShell) {
-    AutoQuitShell::_autoQuitShell = autoQuitShell;
-}
-
-
 void RaceXL::readShellInput(int argc, char** argv) {
 
     stringVector conv_argv;

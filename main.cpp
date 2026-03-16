@@ -15,8 +15,10 @@
 
 
 int main(int argc, char** argv) {
+
+    AutoQuitShell::_autoQuitShell = auto_quit_shell_flag;
     
-    RaceXL xlCreator(auto_quit_shell_flag);
+    RaceXL xlCreator;
 
     xlCreator.readShellInput(argc, argv);
     xlCreator.setupExcelFile();
