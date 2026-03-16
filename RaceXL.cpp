@@ -8,10 +8,14 @@
 #include "RaceActivity.h"     // for 'RaceActivity'
 #include "AutoQuitShell.h"    // for access to 'AutoQuitShell'
 
-using std::cout;
-using std::endl;
 using std::string;
 using namespace OpenXLSX;
+
+
+string substr(const string& s, int startIndex, int endIndex) {
+    int length = endIndex - startIndex + 1;
+    return s.substr(startIndex, length);
+}
 
 
 void RaceXL::readShellInput(int argc, char** argv) {
@@ -30,13 +34,32 @@ void RaceXL::readShellInput(int argc, char** argv) {
     printLine();
     printLine("./RaceXL.exe", ' ');
     std::getline(std::cin, userInput);
-    if (!userInput.empty()) {
-        userInput = "./RaceXL.exe " + userInput + " ";  // " " to ensure the last argument is read correctly
-        conv_argv = splitString(userInput);
-    } else {
+
+    if (userInput.empty()) {
         conv_argv.push_back("./RaceXL.exe");
+        this->processedUserInput = readUserInput(conv_argv);
+        return;
     }
     
+    stringVector temp = splitString("./RaceXL.exe " + userInput + " "); // " " to ensure the last argument is read correctly
+    bool insideFilePath = false;
+    for (const string& s : temp) {
+        if (s.front() == '"' && s.size() > 1) { // '"' is not the only char
+            insideFilePath = true;
+            conv_argv.push_back(substr(s, 1, s.size()-1));
+        }
+        else if (s.back() == '"' && s.size() > 1) { // '"' is not the only char
+            insideFilePath = false;
+            conv_argv.back() += " " + substr(s, 0, s.size()-2);
+        }
+        else if (insideFilePath) {
+            conv_argv.back() += " " + s; // add the current part to the last argument
+        }
+        else {
+            conv_argv.push_back(s);
+        }
+    }
+
     this->processedUserInput = readUserInput(conv_argv);
 }
 
