@@ -20,7 +20,7 @@ void RaceXL::readShellInput(int argc, char** argv) {
     
     if (AutoQuitShell::_autoQuitShell) {
         conv_argv = convertArgv(argc, argv);
-        this->processedUserInput = readUserInput(conv_argv.size(), conv_argv);
+        this->processedUserInput = readUserInput(conv_argv);
         return;
     }
 
@@ -37,7 +37,7 @@ void RaceXL::readShellInput(int argc, char** argv) {
         conv_argv.push_back("./RaceXL.exe");
     }
     
-    this->processedUserInput = readUserInput(conv_argv.size(), conv_argv);
+    this->processedUserInput = readUserInput(conv_argv);
 }
 
 

@@ -57,12 +57,11 @@ void custom_exit(int ret);
 /**
  * Read the user input from the command line, and, if needend, prompt for the default configuration
  * 
- * @param argc the number of command line arguments
  * @param argv the command line arguments
  * 
  * @return A pair containing the json configuration string and the output filename
  */
-stringsPair readUserInput(int argc, const stringVector& argv);
+stringsPair readUserInput(const stringVector& argv);
 
 
 /**
@@ -78,26 +77,24 @@ stringsPair readUserInput(int argc, const stringVector& argv);
  * 
  * - -h, --help : print help message and exit.
  * 
- * @param argc the number of command line arguments
  * @param argv the command line arguments
  * @param flag_default reference to a boolean that will be set to true if the default flag is set
  * 
  * @return A pair containing the output filename (or default if not provided) and the json filename (or empty string if not provided)
  */
-stringsPair checkArguments(int argc, const stringVector& argv, bool& flag_default);
+stringsPair checkArguments(const stringVector& argv, bool& flag_default);
 
 
 /**
  * Find the index of a flag in the command line arguments
  * 
- * @param argc the number of command line arguments
  * @param argv the command line arguments
  * @param flag_v1 the first version of the flag to search for
  * @param flag_v2 the second version of the flag to search for
  * 
  * @return the index of the flag in argv if found, -1 otherwise
  */
-int findFlag(int argc, const stringVector& argv, const string& flag_v1, const string& flag_v2);
+int findFlag(const stringVector& argv, const string& flag_v1, const string& flag_v2);
 
 
 /**

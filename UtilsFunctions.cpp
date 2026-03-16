@@ -74,11 +74,11 @@ stringVector splitString(const string& str) {
 }
 
 
-stringsPair readUserInput(int argc, const stringVector& argv) {
+stringsPair readUserInput(const stringVector& argv) {
 
     bool flag_default = false;
 
-    stringsPair inputResult = checkArguments(argc, argv, flag_default);
+    stringsPair inputResult = checkArguments(argv, flag_default);
     string outputFilename = inputResult.first;    
     string configFilename = inputResult.second;
 
@@ -122,8 +122,8 @@ stringsPair readUserInput(int argc, const stringVector& argv) {
 }
 
 
-int findFlag(int argc, const stringVector& argv, const string& flag_v1, const string& flag_v2) {
-    for (int i = 1; i < argc; ++i) {
+int findFlag(const stringVector& argv, const string& flag_v1, const string& flag_v2) {
+    for (int i = 1; i < argv.size(); ++i) {
         if (argv[i] == flag_v1 || argv[i] == flag_v2) {
             return i;
         }
@@ -132,10 +132,10 @@ int findFlag(int argc, const stringVector& argv, const string& flag_v1, const st
 }
 
 
-stringsPair checkArguments(int argc, const stringVector& argv, bool& flag_default) {
-    int help_index = findFlag(argc, argv, "-h", "--help");
-    int name_index = findFlag(argc, argv, "-n", "--name");
-    int default_index = findFlag(argc, argv, "-d", "--default");
+stringsPair checkArguments(const stringVector& argv, bool& flag_default) {
+    int help_index = findFlag(argv, "-h", "--help");
+    int name_index = findFlag(argv, "-n", "--name");
+    int default_index = findFlag(argv, "-d", "--default");
     if (help_index != -1) {
         if (help_index != 1) {
             printLine("\nError: The help option must be the first flag (if provided).");
@@ -160,7 +160,7 @@ stringsPair checkArguments(int argc, const stringVector& argv, bool& flag_defaul
     string outputFilename = defaultOutputFilename;
     string configFilename = "";
     if (name_index != -1) {
-        if ((name_index + 1 >= argc) || (name_index + 1 >= default_index && default_index != -1)) {
+        if ((name_index + 1 >= argv.size()) || (name_index + 1 >= default_index && default_index != -1)) {
             printLine("\nError: No output filename provided after --name or -n option.");
             printLine("Use --help or -h by itself to see full usage instructions.\n");
             custom_exit(1);
@@ -171,8 +171,8 @@ stringsPair checkArguments(int argc, const stringVector& argv, bool& flag_defaul
     if (default_index != -1) {
         flag_default = true;
     } else {
-        if (argc > name_index + 2) {
-            configFilename = argv[argc - 1];
+        if (argv.size() > name_index + 2) {
+            configFilename = argv[argv.size() - 1];
         }
     }
     return {outputFilename, configFilename};
