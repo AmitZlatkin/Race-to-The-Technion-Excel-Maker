@@ -14,12 +14,6 @@ using namespace OpenXLSX;
 namespace fs = std::filesystem;
 
 
-string substr(const string& s, int startIndex, int endIndex) {
-    int length = endIndex - startIndex + 1;
-    return s.substr(startIndex, length);
-}
-
-
 void RaceXL::readShellInput(int argc, char** argv) {
 
     stringVector conv_argv;
@@ -43,22 +37,55 @@ void RaceXL::readShellInput(int argc, char** argv) {
         return;
     }
     
-    stringVector temp = splitString("./RaceXL.exe " + userInput + " "); // " " to ensure the last argument is read correctly
-    bool insideFilePath = false;
-    for (const string& s : temp) {
-        if (s.front() == '"' && s.size() > 1) { // '"' is not the only char
-            insideFilePath = true;
-            conv_argv.push_back(substr(s, 1, s.size()-1));
-        }
-        else if (s.back() == '"' && s.size() > 1) { // '"' is not the only char
-            insideFilePath = false;
-            conv_argv.back() += " " + substr(s, 0, s.size()-2);
-        }
-        else if (insideFilePath) {
-            conv_argv.back() += " " + s; // add the current part to the last argument
-        }
-        else {
-            conv_argv.push_back(s);
+    stringVector userInputArgv = splitString("./RaceXL.exe " + userInput + " "); // " " to ensure the last argument is read correctly
+
+    enum ArgumentType {
+        NOT_IN_QUOTES,
+        SINGLE_QUOTES,
+        DOUBLE_QUOTES
+    };
+
+    int currType = ArgumentType::NOT_IN_QUOTES;
+
+    for (const string& arg : userInputArgv)
+    {
+        string to_add = arg;
+        int len = arg.length();
+
+        switch (currType)
+        {
+        case ArgumentType::NOT_IN_QUOTES:
+            if ( (arg.front() == '\'' || arg.front() == '"') && len > 1) {
+                to_add = arg.substr(1, len-1);
+                currType = (arg.front() == '\'') ? ArgumentType::SINGLE_QUOTES : ArgumentType::DOUBLE_QUOTES;
+
+                if ((arg.back() == '\'' && currType == ArgumentType::SINGLE_QUOTES) ||
+                    ( arg.back() == '"' && currType == ArgumentType::DOUBLE_QUOTES) ) {
+                    to_add = (len > 2) ? arg.substr(1, len-2) : "";
+                    currType = ArgumentType::NOT_IN_QUOTES;
+                }
+            }
+            if (!to_add.empty()) conv_argv.push_back(to_add);
+            break;
+        
+        case ArgumentType::SINGLE_QUOTES:
+            if (arg.back() == '\'' && len > 1) {
+                to_add = arg.substr(0, len-1);
+                currType = ArgumentType::NOT_IN_QUOTES;
+            }
+            conv_argv.back() += " " + to_add;
+            break;
+        
+        case ArgumentType::DOUBLE_QUOTES:
+            if (arg.back() == '"' && len > 1) {
+                to_add = arg.substr(0, len-1);
+                currType = ArgumentType::NOT_IN_QUOTES;
+            }
+            conv_argv.back() += " " + to_add;
+            break;
+        
+        default:
+            break;
         }
     }
 
