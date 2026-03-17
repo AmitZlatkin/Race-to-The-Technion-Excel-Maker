@@ -11,6 +11,7 @@
 
 using std::cout;
 using std::endl;
+namespace fs = std::filesystem;
 
 
 // Checks if a single wide character is Hebrew
@@ -96,41 +97,48 @@ stringsPair readUserInput(const stringVector& argv) {
     string outputFilename = inputResult.first;    
     string configFilename = inputResult.second;
 
-    printLine("\nReading json configuration file...");
+    if (!fs::path(outputFilename).has_extension()) {
+        outputFilename += ".xlsx";
+    }
+
+    printLine("\nStarting json configuration...");
     string jsonString;
     
     if (configFilename != "") {
+        if (!fs::path(configFilename).has_extension()) {
+            configFilename += ".json";
+        }
         jsonString = JsonParser::getJsonString(configFilename);
         printLine("Race was successfully configured based on json file.\n");
-    } else {
+        return {jsonString, outputFilename};
+    }
 
-        if (flag_default) {
-            printLine("Using the default configuration...");
-            jsonString = JsonParser::getDefaultJsonString();
-            printLine("Race was successfully configured based on default configuration.\n");
-            return {jsonString, outputFilename};
-        }
+    if (flag_default) {
+        printLine("Using the default configuration...");
+        jsonString = JsonParser::getDefaultJsonString();
+        printLine("Race was successfully configured based on default configuration.\n");
+        return {jsonString, outputFilename};
+    }
 
-        printLine("No json file was given...");
-        printLine("Do you want to use the default configuration? Y/n\n");
-        
-        string userInput;
-        std::getline(std::cin, userInput);
-        
-        if (userInput == "Y" || userInput == "y") {
-            printLine("\nUsing the default configuration...");
-            jsonString = JsonParser::getDefaultJsonString();
-            printLine("Race was successfully configured based on default configuration.\n");
-        }
-        else if (userInput == "N" || userInput == "n") {
-            printLine("\nUser has chosen to not use default configuration.");
-            printLine("Quitting execution.\n");
-            custom_exit(0);
-        }
-        else {
-            printLine("\nInvalid key was pressed, quitting execution.\n");
-            custom_exit(1);
-        }
+    printLine("No json file was given...");
+    printLine("Do you want to use the default configuration? Y/n\n");
+    
+    string userInput;
+    std::getline(std::cin, userInput);
+    
+    if (userInput == "Y" || userInput == "y") {
+        printLine("\nUsing the default configuration...");
+        jsonString = JsonParser::getDefaultJsonString();
+        printLine("Race was successfully configured based on default configuration.\n");
+    }
+    else if (userInput == "N" || userInput == "n") {
+        printLine("\nUser has chosen to not use default configuration.");
+        printLine("Quitting execution.\n");
+        custom_exit(0);
+    }
+    else {
+        printLine("\nInvalid key was pressed, quitting execution.\n");
+        custom_exit(1);
     }
     return {jsonString, outputFilename};
 }
