@@ -153,22 +153,22 @@ void JsonParser::parseFullJsonString(const string& jsonString, int& teams, std::
     }
 
     if (teams <= 0) {
-        cout << "Invalid number of teams: " << teams << endl;
-        exit(0);
+        printLine("Invalid number of teams: " + std::to_string(teams) + "\n");
+        custom_exit(0);
     }
 
     if (activities.empty()) {
-        cout << "No activities found." << endl;
-        exit(0);
+        printLine("No activities found.\n");
+        custom_exit(0);
     }
 
     if (activities.size() < teams) {
-        cout << "Number of activities (" << activities.size() << ") is less than the number of teams (" << teams << ")." << endl;
-        exit(0);
+        printLine("Number of activities (" + std::to_string(activities.size()) + ") is less than the number of teams (" + std::to_string(teams) + ").\n");
+        custom_exit(0);
     }
 
     if (activities.size() > teams) {
-        cout << "Warning: Number of activities (" << activities.size() << ") is greater than the number of teams (" << teams << ")." << endl;
+        printLine("Warning: Number of activities (" + std::to_string(activities.size()) + ") is greater than the number of teams (" + std::to_string(teams) + ").\n");
     }
 }
 
