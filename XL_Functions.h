@@ -10,7 +10,7 @@ using std::string;
 using namespace OpenXLSX;
 
 
-static const XLColor dark_green = XLColor(53, 104, 84);
+static const XLColor dark_green = XLColor(3, 92, 91);
 static const XLColor light_grey = XLColor(246, 248, 249);
 static const XLColor white = XLColor(255, 255, 255);
 static const XLColor black = XLColor(0, 0, 0);
