@@ -41,6 +41,21 @@ string makeHebrewReadable(const string& hebText) {
 }
 
 
+string makeHebrewReadablePath(const string& path) {
+
+    string result;
+
+    bool first = true;
+    for (const string& step : splitString(path, '/')) {
+        if (!first) result.append("/");
+        result.append(makeHebrewReadable(step));
+        first = false;
+    }
+
+    return result;
+}
+
+
 stringVector convertArgv(int argc, char** argv) {
     stringVector res;
     for(int i=0; i<argc; i++) {
@@ -60,12 +75,12 @@ void custom_exit(int ret) {
 }
 
 
-stringVector splitString(const string& str) {
-    std::vector<std::string> words;
+stringVector splitString(const string& str, char delimiter) {
+    stringVector words;
     std::istringstream stream(str);
-    std::string word;
+    string word;
 
-    while (stream >> word) {
+    while (std::getline(stream, word, delimiter)) {
         words.push_back(word);
     }
 

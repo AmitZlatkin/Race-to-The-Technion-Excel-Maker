@@ -26,6 +26,16 @@ string makeHebrewReadable(const string& hebText);
 
 
 /**
+ * Make a UTF-8 path string readable in Hebrew by reversing each step if it contains Hebrew characters
+ * 
+ * @param path the input UTF-8 string
+ * 
+ * @return The reversed string if it contains Hebrew characters, otherwise returns the original string
+ */
+string makeHebrewReadablePath(const string& path);
+
+
+/**
  * Convert argv from char** to std::vector<std::string>
  * 
  * @param argc argc that main() got
@@ -40,10 +50,11 @@ stringVector convertArgv(int argc, char** argv);
  * Split a string by whitespace
  * 
  * @param str the string to split
+ * @param delimiter the character to split by (default: ' ')
  * 
  * @return A vector of strings, split by whitespace
  */
-stringVector splitString(const string& str);
+stringVector splitString(const string& str, char delimiter = ' ');
 
 
 /**

@@ -7,9 +7,11 @@
 #include "JsonParser.h"       // for reading the json part of the input
 #include "RaceActivity.h"     // for 'RaceActivity'
 #include "AutoQuitShell.h"    // for access to 'AutoQuitShell'
+#include <filesystem>         // for creating the parent folder if needed
 
 using std::string;
 using namespace OpenXLSX;
+namespace fs = std::filesystem;
 
 
 string substr(const string& s, int startIndex, int endIndex) {
@@ -74,11 +76,28 @@ void RaceXL::setupExcelFile() const {
     int teams = 0;
     JsonParser::parseFullJsonString(jsonString, teams, activities);
 
-    printLine("Opening '" + makeHebrewReadable(outputFilename) + ".xlsx" + "' Excel Document...");
+    printLine("Opening '" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document...");
+
+    fs::path filepath = outputFilename;
+    fs::path parentDir = filepath.parent_path();
+
+    if (!parentDir.string().empty()) {
+        try {
+            if (!fs::exists(parentDir)) {
+                printLine("Creating directory: '" + makeHebrewReadablePath(parentDir.string()) + "'");
+                fs::create_directory(parentDir);
+                printLine("Directory: '" + makeHebrewReadablePath(parentDir.string()) + "'");
+            }
+        } catch (const fs::filesystem_error& e) {
+            printLine("Error creating directory: '" + makeHebrewReadablePath(e.what()) + "'");
+            custom_exit(1);
+        }
+    }
+
     XLDocument doc;
     doc.create(outputFilename + ".xlsx", XLForceOverwrite);
     auto race_excel = doc.workbook();
-    printLine("'" + makeHebrewReadable(outputFilename) + ".xlsx" + "' Excel Document Opened\n");
+    printLine("'" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document Opened\n");
 
     XL_Functions::cleanWorkbook(race_excel, outputFilename);
 
@@ -104,7 +123,7 @@ void RaceXL::setupExcelFile() const {
         XL_Functions::setActivityFormulas(scores_wks, teams, activityRow, activityData);
     }
 
-    printLine("Saving '" + makeHebrewReadable(outputFilename) + ".xlsx" + "' Excel Document...");
+    printLine("Saving '" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document...");
     doc.save();
     doc.close();
     printLine("Done!\n");

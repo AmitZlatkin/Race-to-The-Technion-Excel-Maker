@@ -6,13 +6,13 @@
 
 
 void XL_Functions::cleanWorkbook(XLWorkbook& wb, const string& outputFilename) {
-    printLine("Cleaning '" + makeHebrewReadable(outputFilename) + ".xlsx" + "' Excel Document...");
+    printLine("Cleaning '" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document...");
     int sheets = wb.sheetCount();
     for (int i = 1; i < sheets; ++i) {
         wb.deleteSheet(wb.sheet(1).name());
     }
     wb.worksheet(1).setName("ניקוד");
-    printLine("'" + makeHebrewReadable(outputFilename) + ".xlsx" + "' Excel Document Cleaned\n");
+    printLine("'" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document Cleaned\n");
 }
 
 
@@ -52,26 +52,6 @@ void XL_Functions::setDeltaTimeFormulas(XLDocument& doc, XLWorksheet& wks, int t
         formula << col << "3-" << col << "2";
         cell->formula() = formula.str();
     }
-
-    /**
-     * @brief
-     * This code sets default time into the cells, but it doesn't work and isn't really needed.
-     * So I've decided to comment it out, but leave it here for those who might wish to adapt the code for themselves.
-     *
-     * std::tm tm;
-     * tm.tm_year = 2025 - 1900; // Years since 1900
-     * tm.tm_mon = 0; // January (0-based, so 0 means January)
-     * tm.tm_mday = 1;
-     * tm.tm_hour = 0;
-     * tm.tm_min = 0;
-     * tm.tm_sec = 0;
-     * XLDateTime dt (tm);
-     * 
-     * auto dateTimeCells = getRange(wks, wks.cell(2, colShift+2), wks.cell(3, colShift+1+teams));
-     * for (auto cell : dateTimeCells) {
-     *     cell.value().set(dt);
-     * }
-    */
 }
 
 
