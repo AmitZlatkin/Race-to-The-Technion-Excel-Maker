@@ -8,6 +8,7 @@
 #include <algorithm>       // for 'std::reverse'
 #include "JsonParser.h"    // for it's part in reading the input
 #include "AutoQuitShell.h" // for access to 'AutoQuitShell'
+#include <filesystem>      // for working with the directory
 
 using std::cout;
 using std::endl;

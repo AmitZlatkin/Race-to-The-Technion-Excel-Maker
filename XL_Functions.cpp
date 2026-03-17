@@ -6,13 +6,13 @@
 
 
 void XL_Functions::cleanWorkbook(XLWorkbook& wb, const string& outputFilename) {
-    printLine("Cleaning '" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document...");
+    printLine("Cleaning '" + makeHebrewReadablePath(outputFilename) + "' Excel Document...");
     int sheets = wb.sheetCount();
     for (int i = 1; i < sheets; ++i) {
         wb.deleteSheet(wb.sheet(1).name());
     }
     wb.worksheet(1).setName("ניקוד");
-    printLine("'" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document Cleaned\n");
+    printLine("'" + makeHebrewReadablePath(outputFilename) + "' Excel Document Cleaned\n");
 }
 
 

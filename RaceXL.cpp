@@ -7,7 +7,7 @@
 #include "JsonParser.h"       // for reading the json part of the input
 #include "RaceActivity.h"     // for 'RaceActivity'
 #include "AutoQuitShell.h"    // for access to 'AutoQuitShell'
-#include <filesystem>         // for creating the parent folder if needed
+#include <filesystem>         // for working with the directory
 
 using std::string;
 using namespace OpenXLSX;
@@ -103,7 +103,7 @@ void RaceXL::setupExcelFile() const {
     int teams = 0;
     JsonParser::parseFullJsonString(jsonString, teams, activities);
 
-    printLine("Opening '" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document...");
+    printLine("Opening '" + makeHebrewReadablePath(outputFilename) + "' Excel Document...");
 
     fs::path filepath = outputFilename;
     fs::path parentDir = filepath.parent_path();
@@ -122,9 +122,9 @@ void RaceXL::setupExcelFile() const {
     }
 
     XLDocument doc;
-    doc.create(outputFilename + ".xlsx", XLForceOverwrite);
+    doc.create(outputFilename, XLForceOverwrite);
     auto race_excel = doc.workbook();
-    printLine("'" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document Opened\n");
+    printLine("'" + makeHebrewReadablePath(outputFilename) + "' Excel Document Opened\n");
 
     XL_Functions::cleanWorkbook(race_excel, outputFilename);
 
@@ -150,7 +150,7 @@ void RaceXL::setupExcelFile() const {
         XL_Functions::setActivityFormulas(scores_wks, teams, activityRow, activityData);
     }
 
-    printLine("Saving '" + makeHebrewReadablePath(outputFilename) + ".xlsx" + "' Excel Document...");
+    printLine("Saving '" + makeHebrewReadablePath(outputFilename) + "' Excel Document...");
     doc.save();
     doc.close();
     printLine("Done!\n");
