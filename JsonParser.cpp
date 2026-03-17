@@ -48,14 +48,16 @@ string JsonParser::getDefaultJsonString() {
 
 
 string JsonParser::getJsonString(const string& jsonFilePath) {
+    printLine("Opening '" + makeHebrewReadablePath(jsonFilePath) + "' json configuration file...");
     std::ifstream jsonFile = std::ifstream(jsonFilePath);
-
+    
     string jsonString;
     if (!jsonFile.good()) {
         printLine("Error: Could not open JSON file: " + jsonFilePath + "\n");
         custom_exit(1);
     }
-
+    
+    printLine("Reading '" + makeHebrewReadablePath(jsonFilePath) + "' json configuration file...");
     string row;
     while (!jsonFile.eof()) {
         getline(jsonFile, row);
