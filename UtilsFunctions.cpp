@@ -202,18 +202,6 @@ stringsPair checkArguments(const stringVector& argv, bool& flag_default) {
 }
 
 
-/** Function to set the console text colour using ANSI escape
- * 
- * @param textColour the text colour
-*/
-void setColour(COLOUR_TYPE textColour) {
-    cout << "\033[" << getAnsiCode(textColour) << "m";
-}
-
-// Function to reset the console color
-void resetColour() { setColour(COLOUR_TYPE::NO_COLOUR); }
-
-
 /**
  * Get the ANSI colour code for a given COLOUR_TYPE
  * 
@@ -245,7 +233,19 @@ int getAnsiCode(COLOUR_TYPE color) {
 }
 
 
-void printLine(const string& str, char end, COLOUR_TYPE textColor)  {
+/** Function to set the console text colour using ANSI escape
+ * 
+ * @param textColour the text colour
+*/
+void setColour(COLOUR_TYPE textColour) {
+    cout << "\033[" << getAnsiCode(textColour) << "m";
+}
+
+// Function to reset the console color
+void resetColour() { setColour(COLOUR_TYPE::NO_COLOUR); }
+
+
+void printLine(const string& str, COLOUR_TYPE textColor, char end)  {
     setColour(textColor);
     cout << str << end;
     resetColour();

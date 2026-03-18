@@ -139,10 +139,10 @@ enum COLOUR_TYPE {
  * printLine: print a line to the console
  * 
  * @param str the string to print
- * @param end the line ending character (default: '\\n')
  * @param textColor the color to print the text in (default: no color)
+ * @param end the line ending character (default: '\\n')
  */
-void printLine(const string& str = "", char end = '\n', COLOUR_TYPE textColor = COLOUR_TYPE::NO_COLOUR);
+void printLine(const string& str = "", COLOUR_TYPE textColor = COLOUR_TYPE::NO_COLOUR, char end = '\n');
 
 
 #endif // UTILS_FUNCTIONS_H
