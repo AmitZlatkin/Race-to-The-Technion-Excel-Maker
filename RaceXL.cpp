@@ -153,7 +153,7 @@ void RaceXL::setupExcelFile() const {
     printLine("Saving '" + makeHebrewReadablePath(outputFilename) + "' Excel Document...");
     doc.save();
     doc.close();
-    printLine("Done!\n");
+    printLine("Done!\n", COLOUR_TYPE::GREEN);
 }
 
 
