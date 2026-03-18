@@ -117,12 +117,32 @@ void printHelpMessage(const string& progName);
 
 
 /**
+ * An enum representing the different colors that can be used in the console output
+ */
+enum COLOUR_TYPE {
+    BLACK,   BRIGHT_BLACK,
+    RED,     BRIGHT_RED,
+    GREEN,   BRIGHT_GREEN,
+    YELLOW,  BRIGHT_YELLOW,
+    BLUE,    BRIGHT_BLUE,
+    MAGENTA, BRIGHT_MAGENTA,
+    CYAN,    BRIGHT_CYAN,
+    WHITE,   BRIGHT_WHITE,
+
+    NO_COLOUR,
+
+    NUM_COLOURS
+};
+
+
+/**
  * printLine: print a line to the console
  * 
  * @param str the string to print
  * @param end the line ending character (default: '\\n')
+ * @param textColor the color to print the text in (default: no color)
  */
-void printLine(const string& str = "", char end = '\n');
+void printLine(const string& str = "", char end = '\n', COLOUR_TYPE textColor = COLOUR_TYPE::NO_COLOUR);
 
 
 #endif // UTILS_FUNCTIONS_H

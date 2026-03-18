@@ -202,8 +202,53 @@ stringsPair checkArguments(const stringVector& argv, bool& flag_default) {
 }
 
 
-void printLine(const string& str, char end)  {
+/** Function to set the console text colour using ANSI escape
+ * 
+ * @param textColour the text colour
+*/
+void setColour(COLOUR_TYPE textColour) {
+    cout << "\033[" << getAnsiCode(textColour) << "m";
+}
+
+// Function to reset the console color
+void resetColour() { setColour(COLOUR_TYPE::NO_COLOUR); }
+
+
+/**
+ * Get the ANSI colour code for a given COLOUR_TYPE
+ * 
+ * @param color the COLOUR_TYPE for which to get the ANSI code
+ * 
+ * @return the ANSI colour code corresponding to the given COLOUR_TYPE
+ */
+int getAnsiCode(COLOUR_TYPE color) {
+    switch (color) {
+        case COLOUR_TYPE::BLACK:         return 30;
+        case COLOUR_TYPE::BRIGHT_BLACK:  return 90;
+        case COLOUR_TYPE::RED:           return 31;
+        case COLOUR_TYPE::BRIGHT_RED:    return 91;
+        case COLOUR_TYPE::GREEN:         return 32;
+        case COLOUR_TYPE::BRIGHT_GREEN:  return 92;
+        case COLOUR_TYPE::YELLOW:        return 33;
+        case COLOUR_TYPE::BRIGHT_YELLOW: return 93;
+        case COLOUR_TYPE::BLUE:          return 34;
+        case COLOUR_TYPE::BRIGHT_BLUE:   return 94;
+        case COLOUR_TYPE::MAGENTA:       return 35;
+        case COLOUR_TYPE::BRIGHT_MAGENTA:return 95;
+        case COLOUR_TYPE::CYAN:          return 36;
+        case COLOUR_TYPE::BRIGHT_CYAN:   return 96;
+        case COLOUR_TYPE::WHITE:         return 37;
+        case COLOUR_TYPE::BRIGHT_WHITE:  return 97;
+        case COLOUR_TYPE::NO_COLOUR:     return 0;
+        default:                        return 0; // No color, just to be safe
+    }
+}
+
+
+void printLine(const string& str, char end, COLOUR_TYPE textColor)  {
+    setColour(textColor);
     cout << str << end;
+    resetColour();
 }
 
 
