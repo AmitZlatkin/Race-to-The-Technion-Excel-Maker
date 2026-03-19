@@ -136,7 +136,7 @@ enum COLOUR_TYPE {
 
 
 /**
- * printLine: print a line to the console
+ * Print a line to the console
  * 
  * @param str the string to print
  * @param textColor the color to print the text in (default: no color)

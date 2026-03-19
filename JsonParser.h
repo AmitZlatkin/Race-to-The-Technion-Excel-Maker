@@ -19,7 +19,7 @@ class JsonParser
 public:
 
     /**
-     * getDefaultJsonString: Returns the default JSON configuration string
+     * Get the default JSON configuration string
      * 
      * @return the default JSON configuration string
      */
@@ -27,7 +27,7 @@ public:
 
 
     /**
-     * getJsonString: Reads a JSON file and returns its content as a string
+     * Read a JSON file and return its content as a string
      * 
      * @param jsonFilePath the path to the JSON file
      * 
@@ -37,7 +37,7 @@ public:
 
 
     /**
-     * parseFullJsonString: Parses the full JSON string to extract the number of teams and the activities
+     * Parse the full JSON string to extract the number of teams and the activities
      * 
      * @param jsonString the input JSON string
      * @param teams reference to store the number of teams
@@ -47,7 +47,7 @@ public:
 
 
     /**
-     * parseActivityFromJson: Parses a JSON string representing a single activity and returns a RaceActivity object
+     * Parse a JSON string representing a single activity and return a RaceActivity object
      * 
      * @param jsonString the input JSON string representing a single activity
      * 
