@@ -1,0 +1,14 @@
+{
+    "teams": -1,
+    "activities": [
+        {
+            "name": "activity 1",
+            "location": "loc 1",
+            "makeWorksheet": true,
+            "rows": 15,
+			"numberTable": true,
+            "pointsPerRow": 0
+        }
+    ],
+    "_what_is_wrong": "-1 teams"
+}
