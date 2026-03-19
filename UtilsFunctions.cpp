@@ -354,7 +354,7 @@ void printHelpMessage(const string& progName) {
     printLine();
     printLine("        Note", COLOUR_TYPE::BRIGHT_YELLOW, "");
     printLine(": The filename may also be a path, it will be treated as a ", COLOUR_TYPE::NO_COLOUR, "");
-    printLine("RELATIVE", COLOUR_TYPE::BRIGHT_MAGENTA, "");
+    printLine("RELATIVE", COLOUR_TYPE::CYAN, "");
     printLine(" path to the");
     printLine("              directory in which the app is running.");
     printLine("              The path should be specified in Unix notation.");
@@ -367,9 +367,9 @@ void printHelpMessage(const string& progName) {
     printLine("        No need to specify json file.");
     printLine();
     printLine("  If no configuration options are provided, the program will prompt the user whether to");
-    printLine("use the default configuration or not.");
+    printLine("  use the default configuration or not.");
     printLine("  If both name options and configuration options are provided, the program will use the");
-    printLine("specified name and configuration file.");
+    printLine("  specified name and the specified configuration file.");
     printLine();
     printLine("The program was created by Amit Zlatkin, a graduate of the 11th class of ", COLOUR_TYPE::NO_COLOUR, "");
     printLine("Odyssey at the Technion", COLOUR_TYPE::BRIGHT_GREEN, "");
