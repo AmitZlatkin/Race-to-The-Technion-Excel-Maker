@@ -7,9 +7,9 @@ AutoQuitShell& AutoQuitShell::getInstance() {
 }
 
 
-void AutoQuitShell::setFlag(bool value) { _autoQuitShell = value; }
+void AutoQuitShell::setAutoQuitShellFlag(bool value) { _autoQuitShellFlag = value; }
 
 
-bool AutoQuitShell::getFlag() const { return _autoQuitShell; }
+bool AutoQuitShell::getAutoQuitShellFlag() const { return _autoQuitShellFlag; }
 
 

@@ -27,7 +27,7 @@ void RaceXL::readShellInput(int argc, char** argv) {
 
     stringVector conv_argv;
     
-    if (AutoQuitShell::getInstance().getFlag()) {
+    if (AutoQuitShell::getInstance().getAutoQuitShellFlag()) {
         conv_argv = convertArgv(argc, argv);
         this->processedUserInput = readUserInput(conv_argv);
         return;

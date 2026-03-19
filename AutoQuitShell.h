@@ -5,13 +5,13 @@
 /**
  * @brief A class that is a Singleton, used to store the global value of whether to auto quit the shell or not
  * 
- * @param _autoQuitShell The static member that serves as the global value
+ * @param _autoQuitShellFlag The static member that serves as the global value
  */
 class AutoQuitShell
 {
 private:
 
-    bool _autoQuitShell; /**< The static member that serves as the global value */
+    bool _autoQuitShellFlag; /**< The static member that serves as the global value */
 
     /**
      * Private constructor to prevent instantiation of the class, since it is a Singleton and only serves to store the global value of whether to auto quit the shell or not
@@ -31,7 +31,7 @@ public:
      * 
      * @param value The value to set the global value to
      */
-    void setFlag(bool value);
+    void setAutoQuitShellFlag(bool value);
 
 
     /**
@@ -39,7 +39,7 @@ public:
      * 
      * @return The value of whether to auto quit the shell or not
      */
-    bool getFlag() const;
+    bool getAutoQuitShellFlag() const;
 };
 
 #endif // AUTO_QUIT_SHELL_H

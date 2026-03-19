@@ -16,7 +16,7 @@
 
 int main(int argc, char** argv) {
 
-    AutoQuitShell::getInstance().setFlag(auto_quit_shell_flag);
+    AutoQuitShell::getInstance().setAutoQuitShellFlag(auto_quit_shell_flag);
     
     RaceXL xlCreator;
 
@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
 
     // additional logic for running via windows app icon
     #ifdef WIN
-    if (!AutoQuitShell::getInstance().getFlag()) {
+    if (!AutoQuitShell::getInstance().getAutoQuitShellFlag()) {
         printLine("Press Enter to quit...");
         std::cin.ignore(); // Waits for Enter (ignores one line of input)
     }

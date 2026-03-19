@@ -69,7 +69,7 @@ stringVector convertArgv(int argc, char** argv) {
 
 
 void custom_exit(int ret) {
-    if (!AutoQuitShell::getInstance().getFlag()) {
+    if (!AutoQuitShell::getInstance().getAutoQuitShellFlag()) {
         string dummy;
         printLine("Press Enter to quit...", COLOUR_TYPE::WHITE);
         std::getline(std::cin, dummy);
