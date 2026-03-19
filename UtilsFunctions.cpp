@@ -193,7 +193,11 @@ stringsPair checkArguments(const stringVector& argv, bool& flag_default) {
     string configFilename = "";
     if (name_index != -1) {
         if ((name_index + 1 >= argv.size()) || (name_index + 1 >= default_index && default_index != -1)) {
-            printLine("\nError: No output filename provided after --name or -n option.", COLOUR_TYPE::BRIGHT_RED);
+            printLine("\nError: No output filename provided after ", COLOUR_TYPE::BRIGHT_RED, "");
+            printLine("--name", COLOUR_TYPE::BRIGHT_MAGENTA, "");
+            printLine(" or ", COLOUR_TYPE::BRIGHT_RED, "");
+            printLine("-n", COLOUR_TYPE::BRIGHT_MAGENTA, "");
+            printLine(" option.", COLOUR_TYPE::BRIGHT_RED);
             printLine("Use ", COLOUR_TYPE::NO_COLOUR, "");
             printLine("--help", COLOUR_TYPE::CYAN, "");
             printLine(" or ", COLOUR_TYPE::NO_COLOUR, "");
