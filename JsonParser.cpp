@@ -53,7 +53,9 @@ string JsonParser::getJsonString(const string& jsonFilePath) {
     
     string jsonString;
     if (!jsonFile.good()) {
-        printLine("\nError: Could not open JSON file: " + jsonFilePath + "\n", COLOUR_TYPE::BRIGHT_RED);
+        printLine("\nError: Could not open JSON file: '", COLOUR_TYPE::BRIGHT_RED, "");
+        printLine(jsonFilePath, COLOUR_TYPE::BRIGHT_MAGENTA, "");
+        printLine("'\n", COLOUR_TYPE::BRIGHT_RED);
         custom_exit(1);
     }
     
