@@ -14,6 +14,15 @@ using namespace OpenXLSX;
 namespace fs = std::filesystem;
 
 
+/**
+ * Parse the command line arguments, handling quoted arguments that may contain spaces. The function modifies 'conv_argv' to contain the parsed arguments.
+ * 
+ * @param conv_argv the vector to store the parsed arguments in, will be cleared at the beginning of the function
+ * @param argv the original command line arguments to parse, as a vector of strings
+ */
+void parseArgvQuotes(stringVector& conv_argv, const stringVector& argv);
+
+
 void RaceXL::readShellInput(int argc, char** argv) {
 
     stringVector conv_argv;
@@ -32,6 +41,7 @@ void RaceXL::readShellInput(int argc, char** argv) {
     std::getline(std::cin, userInput);
 
     if (userInput.empty()) {
+        conv_argv.clear(); // just to be safe
         conv_argv.push_back("./RaceXL.exe");
         this->processedUserInput = readUserInput(conv_argv);
         return;
@@ -39,15 +49,29 @@ void RaceXL::readShellInput(int argc, char** argv) {
     
     stringVector userInputArgv = splitString("./RaceXL.exe " + userInput + " "); // " " to ensure the last argument is read correctly
 
-    enum ArgumentType {
-        NOT_IN_QUOTES,
-        SINGLE_QUOTES,
-        DOUBLE_QUOTES
-    };
+    parseArgvQuotes(conv_argv, userInputArgv);
+
+    this->processedUserInput = readUserInput(conv_argv);
+}
+
+
+/**
+ * An enum to represent the different types of command line arguments when parsing quoted arguments. This is used in the 'parseArgvQuotes' function to determine how to handle each argument based on whether it is inside quotes or not.
+ */
+enum ArgumentType {
+    NOT_IN_QUOTES,
+    SINGLE_QUOTES,
+    DOUBLE_QUOTES
+};
+
+
+void parseArgvQuotes(stringVector& conv_argv, const stringVector& argv) {
+
+    conv_argv.clear();
 
     int currType = ArgumentType::NOT_IN_QUOTES;
 
-    for (const string& arg : userInputArgv)
+    for (const string& arg : argv)
     {
         string to_add = arg;
         int len = arg.length();
@@ -88,8 +112,6 @@ void RaceXL::readShellInput(int argc, char** argv) {
             break;
         }
     }
-
-    this->processedUserInput = readUserInput(conv_argv);
 }
 
 
