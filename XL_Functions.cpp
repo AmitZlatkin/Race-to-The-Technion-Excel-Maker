@@ -12,7 +12,7 @@ void XL_Functions::cleanWorkbook(XLWorkbook& wb, const string& outputFilename) {
         wb.deleteSheet(wb.sheet(1).name());
     }
     wb.worksheet(1).setName("ניקוד");
-    printLine("'" + makeHebrewReadablePath(outputFilename) + "' Excel Document Cleaned\n");
+    printLine("'" + makeHebrewReadablePath(outputFilename) + "' Excel Document Cleaned\n", COLOUR_TYPE::GREEN);
 }
 
 
@@ -115,7 +115,7 @@ void XL_Functions::setTotalFormulas(XLWorksheet& scores_wks, int teams, int row_
         formula << "SUM(" << col << "2:" << col << std::to_string(row_num-1) << ")";
         scores_wks.cell(row_num, col-'A'+1).formula() = formula.str();
     }
-    printLine("Scores Formulas Are Set\n");
+    printLine("Scores Formulas Are Set\n", COLOUR_TYPE::GREEN);
 }
 
 
@@ -133,7 +133,7 @@ void XL_Functions::setActivityFormulas(XLWorksheet& scores_wks, int teams, int f
         }
         scores_wks.cell(formula_row_num, col-'A'+2).formula() = formula.str();
     }    
-    printLine("Activity '" + hebrewReadable + "' Formulas Are Set\n");
+    printLine("Activity '" + hebrewReadable + "' Formulas Are Set\n", COLOUR_TYPE::GREEN);
 }
 
 

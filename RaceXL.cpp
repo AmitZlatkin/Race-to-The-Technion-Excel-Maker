@@ -26,9 +26,9 @@ void RaceXL::readShellInput(int argc, char** argv) {
 
     string userInput;
     printLine();
-    printLine("Please enter the command line arguments (or press Enter to use default configuration):");
+    printLine("Please enter the command line arguments (or press Enter to use default configuration):", COLOUR_TYPE::CYAN);
     printLine();
-    printLine("./RaceXL.exe", COLOUR_TYPE::NO_COLOUR, ' ');
+    printLine("./RaceXL.exe", COLOUR_TYPE::NO_COLOUR, " ");
     std::getline(std::cin, userInput);
 
     if (userInput.empty()) {
@@ -103,7 +103,7 @@ void RaceXL::setupExcelFile() const {
     int teams = 0;
     JsonParser::parseFullJsonString(jsonString, teams, activities);
 
-    printLine("Opening '" + makeHebrewReadablePath(outputFilename) + "' Excel Document...");
+    printLine("Opening '" + makeHebrewReadablePath(outputFilename) + "' Excel Document...", COLOUR_TYPE::BRIGHT_MAGENTA);
 
     fs::path filepath = outputFilename;
     fs::path parentDir = filepath.parent_path();
@@ -111,12 +111,12 @@ void RaceXL::setupExcelFile() const {
     if (!parentDir.string().empty()) {
         try {
             if (!fs::exists(parentDir)) {
-                printLine("Creating directory: '" + makeHebrewReadablePath(parentDir.string()) + "'");
+                printLine("Creating directory: '" + makeHebrewReadablePath(parentDir.string()) + "'", COLOUR_TYPE::MAGENTA);
                 fs::create_directory(parentDir);
-                printLine("Directory: '" + makeHebrewReadablePath(parentDir.string()) + "'");
+                printLine("Directory: '" + makeHebrewReadablePath(parentDir.string()) + "' successfully created", COLOUR_TYPE::GREEN);
             }
         } catch (const fs::filesystem_error& e) {
-            printLine("Error creating directory: '" + makeHebrewReadablePath(e.what()) + "'");
+            printLine("\nError creating directory '" + makeHebrewReadablePath(parentDir.string()) + "':" + makeHebrewReadablePath(e.what()) + "\n", COLOUR_TYPE::BRIGHT_RED);
             custom_exit(1);
         }
     }
@@ -124,7 +124,7 @@ void RaceXL::setupExcelFile() const {
     XLDocument doc;
     doc.create(outputFilename, XLForceOverwrite);
     auto race_excel = doc.workbook();
-    printLine("'" + makeHebrewReadablePath(outputFilename) + "' Excel Document Opened\n");
+    printLine("'" + makeHebrewReadablePath(outputFilename) + "' Excel Document Opened\n", COLOUR_TYPE::GREEN);
 
     XL_Functions::cleanWorkbook(race_excel, outputFilename);
 
@@ -150,10 +150,10 @@ void RaceXL::setupExcelFile() const {
         XL_Functions::setActivityFormulas(scores_wks, teams, activityRow, activityData);
     }
 
-    printLine("Saving '" + makeHebrewReadablePath(outputFilename) + "' Excel Document...");
+    printLine("Saving '" + makeHebrewReadablePath(outputFilename) + "' Excel Document...", COLOUR_TYPE::BRIGHT_MAGENTA);
     doc.save();
     doc.close();
-    printLine("Done!\n", COLOUR_TYPE::GREEN);
+    printLine("Done!\n", COLOUR_TYPE::BRIGHT_GREEN);
 }
 
 

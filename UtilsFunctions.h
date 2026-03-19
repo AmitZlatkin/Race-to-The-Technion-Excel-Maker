@@ -12,7 +12,7 @@ using stringVector = std::vector<string>;
 using stringsPair = std::pair<string, string>;
 
 
-static const string defaultOutputFilename = "race-to-the-technion-scores";
+static const string defaultOutputFilename = "race-to-the-technion";
 
 
 /**
@@ -142,7 +142,7 @@ enum COLOUR_TYPE {
  * @param textColor the color to print the text in (default: no color)
  * @param end the line ending character (default: '\\n')
  */
-void printLine(const string& str = "", COLOUR_TYPE textColor = COLOUR_TYPE::NO_COLOUR, char end = '\n');
+void printLine(const string& str = "", COLOUR_TYPE textColor = COLOUR_TYPE::NO_COLOUR, string end = "\n");
 
 
 #endif // UTILS_FUNCTIONS_H

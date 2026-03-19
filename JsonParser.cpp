@@ -53,7 +53,7 @@ string JsonParser::getJsonString(const string& jsonFilePath) {
     
     string jsonString;
     if (!jsonFile.good()) {
-        printLine("Error: Could not open JSON file: " + jsonFilePath + "\n");
+        printLine("\nError: Could not open JSON file: " + jsonFilePath + "\n", COLOUR_TYPE::BRIGHT_RED);
         custom_exit(1);
     }
     
@@ -153,29 +153,29 @@ void JsonParser::parseFullJsonString(const string& jsonString, int& teams, std::
     }
 
     if (teams <= 0) {
-        printLine("Invalid number of teams: " + std::to_string(teams) + "\n");
+        printLine("Invalid number of teams: " + std::to_string(teams) + "\n", COLOUR_TYPE::BRIGHT_RED);
         custom_exit(0);
     }
 
     if (activities.empty()) {
-        printLine("No activities found.\n");
+        printLine("No activities found.\n", COLOUR_TYPE::BRIGHT_RED);
         custom_exit(0);
     }
 
     if (activities.size() < teams) {
-        printLine("Number of activities (" + std::to_string(activities.size()) + ") is less than the number of teams (" + std::to_string(teams) + ").\n");
+        printLine("Number of activities (" + std::to_string(activities.size()) + ") is less than the number of teams (" + std::to_string(teams) + ").\n", COLOUR_TYPE::BRIGHT_RED);
         custom_exit(0);
     }
 
     if (activities.size() > teams) {
-        printLine("Warning: Number of activities (" + std::to_string(activities.size()) + ") is greater than the number of teams (" + std::to_string(teams) + ").\n");
+        printLine("Warning: Number of activities (" + std::to_string(activities.size()) + ") is greater than the number of teams (" + std::to_string(teams) + ").\n", COLOUR_TYPE::YELLOW);
     }
 }
 
 
 RaceActivity JsonParser::parseActivityFromJson(const string& jsonString)
 {
-    RaceActivity race;
+    RaceActivity activity;
     int pos = 1;
     while (jsonString[pos] != '}') {
         skipWhitespaceAndComma(jsonString, pos);
@@ -185,25 +185,25 @@ RaceActivity JsonParser::parseActivityFromJson(const string& jsonString)
         skipWhitespaceAndComma(jsonString, pos);
 
         if (itemKey == "name") {
-            race.m_name = parseString(jsonString, pos);
+            activity.m_name = parseString(jsonString, pos);
         } else if (itemKey == "location") {
-            race.m_location = parseString(jsonString, pos);
+            activity.m_location = parseString(jsonString, pos);
         } else if (itemKey == "makeWorksheet") {
             string val = parsePrimitive(jsonString, pos);
-            race.m_makeWorksheet = (val == "true");
+            activity.m_makeWorksheet = (val == "true");
         } else if (itemKey == "rows") {
             string val = parsePrimitive(jsonString, pos);
-            race.m_rows = std::stoi(val);
+            activity.m_rows = std::stoi(val);
         } else if (itemKey == "numberTable") {
             string val = parsePrimitive(jsonString, pos);
-            race.m_numberTable = (val == "true");
+            activity.m_numberTable = (val == "true");
         } else if (itemKey == "pointsPerRow") {
             string val = parsePrimitive(jsonString, pos);
-            race.m_pointsPerRow = std::stoi(val);
+            activity.m_pointsPerRow = std::stoi(val);
         }
     }
     
-    return race;
+    return activity;
 }
 
 
