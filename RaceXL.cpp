@@ -112,7 +112,7 @@ void RaceXL::setupExcelFile() const {
         try {
             if (!fs::exists(parentDir)) {
                 printLine("Creating directory: '" + makeHebrewReadablePath(parentDir.string()) + "'", COLOUR_TYPE::MAGENTA);
-                fs::create_directory(parentDir);
+                fs::create_directories(parentDir);
                 printLine("Directory: '" + makeHebrewReadablePath(parentDir.string()) + "' successfully created", COLOUR_TYPE::GREEN);
             }
         } catch (const fs::filesystem_error& e) {
