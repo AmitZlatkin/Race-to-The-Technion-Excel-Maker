@@ -103,7 +103,7 @@ stringsPair readUserInput(const stringVector& argv) {
         outputFilename += ".xlsx";
     }
 
-    printLine("\nStarting json configuration...", COLOUR_TYPE::BLUE);
+    printLine("\nStarting json configuration...", COLOUR_TYPE::CYAN);
     string jsonString;
     
     if (configFilename != "") {
@@ -111,14 +111,13 @@ stringsPair readUserInput(const stringVector& argv) {
             configFilename += ".json";
         }
         jsonString = JsonParser::getJsonString(configFilename);
-        printLine("Race was successfully configured based on json file.\n", COLOUR_TYPE::GREEN);
+        printLine("Successfully analyzed json configuration file.\n", COLOUR_TYPE::GREEN);
         return {jsonString, outputFilename};
     }
 
     if (flag_default) {
-        printLine("Using the default configuration...", COLOUR_TYPE::WHITE);
         jsonString = JsonParser::getDefaultJsonString();
-        printLine("Race was successfully configured based on default configuration.\n", COLOUR_TYPE::GREEN);
+        printLine("Using the default configuration.\n", COLOUR_TYPE::GREEN);
         return {jsonString, outputFilename};
     }
 
@@ -129,9 +128,8 @@ stringsPair readUserInput(const stringVector& argv) {
     std::getline(std::cin, userInput);
     
     if (userInput == "Y" || userInput == "y") {
-        printLine("\nUsing the default configuration...", COLOUR_TYPE::WHITE);
         jsonString = JsonParser::getDefaultJsonString();
-        printLine("Race was successfully configured based on default configuration.\n", COLOUR_TYPE::GREEN);
+        printLine("\nUsing the default configuration.\n", COLOUR_TYPE::GREEN);
     }
     else if (userInput == "N" || userInput == "n") {
         printLine("\nUser has chosen to not use default configuration.", COLOUR_TYPE::CYAN);
@@ -330,7 +328,7 @@ void printHelpMessage(const string& progName) {
     printLine();
     printLine("Usage:", COLOUR_TYPE::BRIGHT_CYAN);
     printLine();
-    printLine("    " + string(progName) + " [help option] [name options] [configuration options]");
+    printLine("    " + fs::path(progName).filename().generic_string() + " [help option] [name options] [configuration options]");
     printLine();
     printLine("Options:", COLOUR_TYPE::BRIGHT_CYAN);
     printLine("  --help", COLOUR_TYPE::CYAN, "");
@@ -354,10 +352,13 @@ void printHelpMessage(const string& progName) {
     printLine("' extension, it will be");
     printLine("              added automatically if missing.");
     printLine();
-    printLine("        The filename may also be a path, it will be treated as a RELATIVE path to the");
-    printLine("        directory in which the app is running.");
-    printLine("        The path should be specified in Unix notation.");
-    printLine("        If some of the directories in the path don't exists, they will be created.");
+    printLine("        Note", COLOUR_TYPE::BRIGHT_YELLOW, "");
+    printLine(": The filename may also be a path, it will be treated as a ", COLOUR_TYPE::NO_COLOUR, "");
+    printLine("RELATIVE", COLOUR_TYPE::BRIGHT_MAGENTA, "");
+    printLine(" path to the");
+    printLine("              directory in which the app is running.");
+    printLine("              The path should be specified in Unix notation.");
+    printLine("              If some of the directories in the path don't exists, they will be created.");
     printLine();
     printLine("  --default", COLOUR_TYPE::CYAN, "");
     printLine(", ", COLOUR_TYPE::NO_COLOUR, "");
