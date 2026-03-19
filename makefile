@@ -79,7 +79,7 @@ $(BUILD_DIR_WIN)/XL_Functions.o: XL_Functions.cpp
 	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@
 
 $(BUILD_DIR_WIN)/RaceXL.o: RaceXL.cpp
-	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@
+	$(COMPILER_V_WIN) $(FLAGS_WIN) -DWIN -c $< -o $@
 
 $(BUILD_DIR_WIN)/AutoQuitShell.o: AutoQuitShell.cpp
 	$(COMPILER_V_WIN) $(FLAGS_WIN) -c $< -o $@

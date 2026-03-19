@@ -26,9 +26,17 @@ void parseArgvQuotes(stringVector& conv_argv, const stringVector& argv);
 void RaceXL::readShellInput(int argc, char** argv) {
 
     stringVector conv_argv;
+
+    // on linux, we can just read the arguments as they are, since the terminal will handle quoted arguments with spaces correctly. On windows, we need to handle this ourselves, since the way the app is run may not allow for correct parsing of quoted arguments with spaces (e.g. when running via the app icon).
+    #ifndef WIN
+    conv_argv = convertArgv(argc, argv);
+    this->processedUserInput = readUserInput(conv_argv);
+    return;
+    #endif
+
+    parseArgvQuotes(conv_argv, convertArgv(argc, argv));
     
     if (AutoQuitShell::getInstance().getAutoQuitShellFlag()) {
-        conv_argv = convertArgv(argc, argv);
         this->processedUserInput = readUserInput(conv_argv);
         return;
     }
