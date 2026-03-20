@@ -328,7 +328,7 @@ void printHelpMessage(const string& progName) {
     printLine();
     printLine("Usage:", COLOUR_TYPE::BRIGHT_CYAN);
     printLine();
-    printLine("    " + fs::path(progName).filename().generic_string() + " [help option] [name options] [configuration options]");
+    printLine("    " + fs::path(progName).filename().generic_string() + " [help] [name] [configuration]");
     printLine();
     printLine("Options:", COLOUR_TYPE::BRIGHT_CYAN);
     printLine("  --help", COLOUR_TYPE::CYAN, "");
@@ -368,8 +368,8 @@ void printHelpMessage(const string& progName) {
     printLine();
     printLine("  If no configuration options are provided, the program will prompt the user whether to");
     printLine("  use the default configuration or not.");
-    printLine("  If both name options and configuration options are provided, the program will use the");
-    printLine("  specified name and the specified configuration file.");
+    printLine("  If both naming and configuration options are provided, the program will use the specified");
+    printLine("  name and the specified configuration file.");
     printLine();
     printLine("The program was created by Amit Zlatkin, a graduate of the 11th class of ", COLOUR_TYPE::NO_COLOUR, "");
     printLine("Odyssey at the Technion", COLOUR_TYPE::BRIGHT_GREEN, "");

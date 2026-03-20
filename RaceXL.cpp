@@ -45,7 +45,7 @@ void RaceXL::readShellInput(int argc, char** argv) {
     printLine();
     printLine("Please enter the command line arguments (or press Enter to use default configuration):", COLOUR_TYPE::CYAN);
     printLine();
-    printLine("./RaceXL.exe", COLOUR_TYPE::NO_COLOUR, " ");
+    printLine(" >> RaceXL.exe ", COLOUR_TYPE::NO_COLOUR, "");
     std::getline(std::cin, userInput);
 
     if (userInput.empty()) {
