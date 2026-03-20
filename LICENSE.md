@@ -1,9 +1,6 @@
 BSD 3-Clause License
 
-## RaceXL License (BSD 3-Clause)
-
-Copyright (c) 2026, Amit Zlatkin,
-All rights reserved.
+Copyright (c) 2026, Amit Zlatkin, All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -32,11 +29,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ---
 
-## Third-Party Software Notices
+### Third-Party Software Notices
 
 This project includes software from the following sources, licensed under the BSD 3-Clause License:
 
-### OpenXLSX
+#### OpenXLSX
+
+BSD 3-Clause License
 
 Copyright (c) 2020, Kenneth Troldal Balslev All rights reserved.
 
