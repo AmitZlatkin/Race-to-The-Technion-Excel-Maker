@@ -174,7 +174,7 @@ You can see an example JSON configuration file below.
 
 
 ## Example JSON Configuration:
-In the file [`Example-Race-Layout.pdf`](./Example-Race-Layout.pdf]) is an example of a possible race layout with 3 various activities.
+In the file [`Example-Race-Layout.pdf`](./Example-Race-Layout.pdf) is an example of a possible race layout with 3 various activities.
 
 In the file [`Example-Race-Config.json`](./Example-Race-Config.json) is the JSON configuration that is associated with that race layout.
 
