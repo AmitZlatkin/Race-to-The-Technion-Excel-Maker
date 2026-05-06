@@ -1,8 +1,10 @@
 # Define variables
+CODE_DIR = code
 SOURCE_DIR = libXL
 LibXL_FILE_LIST = XLCell.cpp XLCellIterator.cpp XLCellRange.cpp XLCellReference.cpp XLCellValue.cpp XLColor.cpp XLColumn.cpp XLComments.cpp XLContentTypes.cpp XLDateTime.cpp XLDocument.cpp XLDrawing.cpp XLFormula.cpp XLMergeCells.cpp XLProperties.cpp XLRelationships.cpp XLRow.cpp XLRowData.cpp XLSharedStrings.cpp XLSheet.cpp XLStyles.cpp XLTables.cpp XLWorkbook.cpp XLXmlData.cpp XLXmlFile.cpp XLXmlParser.cpp XLZipArchive.cpp
 
-MAIN_CODE_FILES = main.cpp RaceActivity.cpp JsonParser.cpp UtilsFunctions.cpp XL_Functions.cpp RaceXL.cpp AutoQuitShell.cpp
+CODE_FILES = main.cpp RaceActivity.cpp JsonParser.cpp UtilsFunctions.cpp XL_Functions.cpp RaceXL.cpp AutoQuitShell.cpp
+MAIN_CODE_FILES = $(addprefix $(CODE_DIR)/, $(CODE_FILES))
 
 # Linux:
 COMPILER_V = g++
