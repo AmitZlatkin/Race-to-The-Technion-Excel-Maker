@@ -1,9 +1,9 @@
 
-# Race to The Technion - Excel Score Sheet Generator
+# RaceXL - Excel Score Sheet Generator
 
 
 <div align="center">
-<img src="AppIcon.ico" alt="RaceXL App Icon" width="150">
+<img src="./code/AppIcon.ico" alt="RaceXL App Icon" width="150">
 </div>
 
 \
@@ -174,43 +174,11 @@ You can see an example JSON configuration file below.
 
 
 ## Example JSON Configuration:
-In the file [`Example Race Layout.docx`](./Example%20Race%20Layout.docx) is an example of a possible race layout with 3 various activities.
+In the file [`Example-Race-Layout.pdf`](./Example-Race-Layout.pdf]) is an example of a possible race layout with 3 various activities.
 
-Below is the JSON configuration that is associated with that race layout.
+In the file [`Example-Race-Config.json`](./Example-Race-Config.json) is the JSON configuration that is associated with that race layout.
 
-**Note:** The configuration JSON file can contain hebrew activity names and locations as well, as shown in [`tests/2025 race config.json`](./tests/2025%20race%20config.json).
-
-```json
-{
-    "teams": 3,
-    "activities": [
-        {
-            "name": "People Quiz",
-            "location": "The Odyssey Office",
-            "makeWorksheet": true,
-            "rows": 6,
-            "numberTable": false,
-            "pointsPerRow": 2
-        },
-        {
-            "name": "Song Completion",
-            "location": "The Main Library",
-            "makeWorksheet": true,
-            "rows": 5,
-            "numberTable": false,
-            "pointsPerRow": 1
-        },
-        {
-            "name": "Human Pyramid",
-            "location": "ASAT Grass",
-            "makeWorksheet": false,
-            "rows": 0,
-            "numberTable": false,
-            "pointsPerRow": 0
-        }
-    ]
-}
-```
+**Note:** The configuration JSON file can contain hebrew activity names and locations as well, as shown in [`tests/2025-race-config.json`](./tests/2025-race-config.json).
 
 ---
 
