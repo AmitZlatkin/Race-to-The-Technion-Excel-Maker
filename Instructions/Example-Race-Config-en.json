@@ -15,7 +15,7 @@
             "makeWorksheet": true,
             "rows": 5,
             "numberTable": false,
-            "pointsPerRow": 1
+            "pointsPerRow": 0
         },
         {
             "name": "Human Pyramid",
