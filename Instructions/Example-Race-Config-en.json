@@ -14,7 +14,7 @@
             "location": "The Main Library",
             "makeWorksheet": true,
             "rows": 5,
-            "numberTable": false,
+            "numberTable": true,
             "pointsPerRow": 0
         },
         {
