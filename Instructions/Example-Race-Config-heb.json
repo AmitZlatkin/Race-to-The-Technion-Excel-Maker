@@ -1,0 +1,29 @@
+{
+    "teams": 3,
+    "activities": [
+        {
+            "name": "חידון אישים",
+            "location": "המשרד של אודיסיאה",
+            "makeWorksheet": true,
+            "rows": 6,
+            "numberTable": false,
+            "pointsPerRow": 2
+        },
+        {
+            "name": "השלמת שירים",
+            "location": "הספרייה המרכזית",
+            "makeWorksheet": true,
+            "rows": 5,
+            "numberTable": true,
+            "pointsPerRow": 0
+        },
+        {
+            "name": "פירמידה אנושית",
+            "location": "הדשא של אסט",
+            "makeWorksheet": false,
+            "rows": 0,
+            "numberTable": false,
+            "pointsPerRow": 0
+        }
+    ]
+}
