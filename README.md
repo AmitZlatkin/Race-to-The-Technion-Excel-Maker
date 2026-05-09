@@ -176,7 +176,7 @@ You can see an example JSON configuration file below.
 ## Example JSON Configuration:
 In the file [`Example-Race-Layout-en.pdf`](./Instructions/Example-Race-Layout-en.pdf) is an example of a possible race layout with 3 various activities.
 
-In the file [`Example-Race-Config.json`](./Instructions/Example-Race-Config.json) is the JSON configuration that is associated with that race layout.
+In the file [`Example-Race-Config-en.json`](./Instructions/Example-Race-Config.-enjson) is the JSON configuration that is associated with that race layout.
 
 **Note:** The configuration JSON file can contain hebrew activity names and locations as well, as shown in [`tests/2025-race-config.json`](./tests/2025-race-config.json).
 
