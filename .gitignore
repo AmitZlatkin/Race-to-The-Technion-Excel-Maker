@@ -1,2 +1,3 @@
-.vscode/
-useless-makefiles/
+.vs/
+old/.vscode/
+old/useless-makefiles/

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11723.231 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RaceXL-win-GUI", "RaceXL-win-GUI.vcxproj", "{66238D62-2D38-A2F4-4A84-D6EED5EEC2AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66238D62-2D38-A2F4-4A84-D6EED5EEC2AB}.Debug|x64.ActiveCfg = Debug|x64
+		{66238D62-2D38-A2F4-4A84-D6EED5EEC2AB}.Debug|x64.Build.0 = Debug|x64
+		{66238D62-2D38-A2F4-4A84-D6EED5EEC2AB}.Debug|x86.ActiveCfg = Debug|Win32
+		{66238D62-2D38-A2F4-4A84-D6EED5EEC2AB}.Debug|x86.Build.0 = Debug|Win32
+		{66238D62-2D38-A2F4-4A84-D6EED5EEC2AB}.Release|x64.ActiveCfg = Release|x64
+		{66238D62-2D38-A2F4-4A84-D6EED5EEC2AB}.Release|x64.Build.0 = Release|x64
+		{66238D62-2D38-A2F4-4A84-D6EED5EEC2AB}.Release|x86.ActiveCfg = Release|Win32
+		{66238D62-2D38-A2F4-4A84-D6EED5EEC2AB}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8A350AB-3288-49DA-AC6D-569105B830BC}
+	EndGlobalSection
+EndGlobal
