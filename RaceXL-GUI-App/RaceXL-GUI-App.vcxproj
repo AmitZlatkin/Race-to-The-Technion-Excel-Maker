@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{92881640-9eb3-4c06-a251-5553a596b61d}</ProjectGuid>
+    <RootNamespace>RaceXLGUIApp</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(WXWIN)\include\msvc;$(WXWIN)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib</AdditionalLibraryDirectories>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>true</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(WXWIN)\include\msvc;$(WXWIN)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib</AdditionalLibraryDirectories>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>true</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(WXWIN)\include\msvc;$(WXWIN)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_x64_lib</AdditionalLibraryDirectories>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>true</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(WXWIN)\include\msvc;$(WXWIN)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_x64_lib</AdditionalLibraryDirectories>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>true</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="libXL\pugixml.cpp" />
+    <ClCompile Include="libXL\XLCell.cpp" />
+    <ClCompile Include="libXL\XLCellIterator.cpp" />
+    <ClCompile Include="libXL\XLCellRange.cpp" />
+    <ClCompile Include="libXL\XLCellReference.cpp" />
+    <ClCompile Include="libXL\XLCellValue.cpp" />
+    <ClCompile Include="libXL\XLColor.cpp" />
+    <ClCompile Include="libXL\XLColumn.cpp" />
+    <ClCompile Include="libXL\XLComments.cpp" />
+    <ClCompile Include="libXL\XLContentTypes.cpp" />
+    <ClCompile Include="libXL\XLDateTime.cpp" />
+    <ClCompile Include="libXL\XLDocument.cpp" />
+    <ClCompile Include="libXL\XLDrawing.cpp" />
+    <ClCompile Include="libXL\XLFormula.cpp" />
+    <ClCompile Include="libXL\XLMergeCells.cpp" />
+    <ClCompile Include="libXL\XLProperties.cpp" />
+    <ClCompile Include="libXL\XLRelationships.cpp" />
+    <ClCompile Include="libXL\XLRow.cpp" />
+    <ClCompile Include="libXL\XLRowData.cpp" />
+    <ClCompile Include="libXL\XLSharedStrings.cpp" />
+    <ClCompile Include="libXL\XLSheet.cpp" />
+    <ClCompile Include="libXL\XLStyles.cpp" />
+    <ClCompile Include="libXL\XLTables.cpp" />
+    <ClCompile Include="libXL\XLWorkbook.cpp" />
+    <ClCompile Include="libXL\XLXmlData.cpp" />
+    <ClCompile Include="libXL\XLXmlFile.cpp" />
+    <ClCompile Include="libXL\XLXmlParser.cpp" />
+    <ClCompile Include="libXL\XLZipArchive.cpp" />
+    <ClCompile Include="Test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libXL\IZipArchive.hpp" />
+    <ClInclude Include="libXL\OpenXLSX-Exports.hpp" />
+    <ClInclude Include="libXL\OpenXLSX.hpp" />
+    <ClInclude Include="libXL\pugiconfig.hpp" />
+    <ClInclude Include="libXL\pugixml.hpp" />
+    <ClInclude Include="libXL\utilities\XLUtilities.hpp" />
+    <ClInclude Include="libXL\XLCell.hpp" />
+    <ClInclude Include="libXL\XLCellIterator.hpp" />
+    <ClInclude Include="libXL\XLCellRange.hpp" />
+    <ClInclude Include="libXL\XLCellReference.hpp" />
+    <ClInclude Include="libXL\XLCellValue.hpp" />
+    <ClInclude Include="libXL\XLColor.hpp" />
+    <ClInclude Include="libXL\XLColumn.hpp" />
+    <ClInclude Include="libXL\XLCommandQuery.hpp" />
+    <ClInclude Include="libXL\XLComments.hpp" />
+    <ClInclude Include="libXL\XLConstants.hpp" />
+    <ClInclude Include="libXL\XLContentTypes.hpp" />
+    <ClInclude Include="libXL\XLDateTime.hpp" />
+    <ClInclude Include="libXL\XLDocument.hpp" />
+    <ClInclude Include="libXL\XLDrawing.hpp" />
+    <ClInclude Include="libXL\XLException.hpp" />
+    <ClInclude Include="libXL\XLFormula.hpp" />
+    <ClInclude Include="libXL\XLIterator.hpp" />
+    <ClInclude Include="libXL\XLMergeCells.hpp" />
+    <ClInclude Include="libXL\XLProperties.hpp" />
+    <ClInclude Include="libXL\XLRelationships.hpp" />
+    <ClInclude Include="libXL\XLRow.hpp" />
+    <ClInclude Include="libXL\XLRowData.hpp" />
+    <ClInclude Include="libXL\XLSharedStrings.hpp" />
+    <ClInclude Include="libXL\XLSheet.hpp" />
+    <ClInclude Include="libXL\XLStyles.hpp" />
+    <ClInclude Include="libXL\XLTables.hpp" />
+    <ClInclude Include="libXL\XLWorkbook.hpp" />
+    <ClInclude Include="libXL\XLXmlData.hpp" />
+    <ClInclude Include="libXL\XLXmlFile.hpp" />
+    <ClInclude Include="libXL\XLXmlParser.hpp" />
+    <ClInclude Include="libXL\XLZipArchive.hpp" />
+    <ClInclude Include="libXL\zippy\zippy.hpp" />
+    <ClInclude Include="nowide\nowide\args.hpp" />
+    <ClInclude Include="nowide\nowide\cenv.hpp" />
+    <ClInclude Include="nowide\nowide\config.hpp" />
+    <ClInclude Include="nowide\nowide\convert.hpp" />
+    <ClInclude Include="nowide\nowide\cstdio.hpp" />
+    <ClInclude Include="nowide\nowide\cstdlib.hpp" />
+    <ClInclude Include="nowide\nowide\encoding_errors.hpp" />
+    <ClInclude Include="nowide\nowide\encoding_utf.hpp" />
+    <ClInclude Include="nowide\nowide\filebuf.hpp" />
+    <ClInclude Include="nowide\nowide\fstream.hpp" />
+    <ClInclude Include="nowide\nowide\iostream.hpp" />
+    <ClInclude Include="nowide\nowide\scoped_ptr.hpp" />
+    <ClInclude Include="nowide\nowide\stackstring.hpp" />
+    <ClInclude Include="nowide\nowide\system.hpp" />
+    <ClInclude Include="nowide\nowide\utf.hpp" />
+    <ClInclude Include="nowide\nowide\utf8_codecvt.hpp" />
+    <ClInclude Include="nowide\nowide\windows.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
