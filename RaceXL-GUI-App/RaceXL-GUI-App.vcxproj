@@ -147,6 +147,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CardPanel.cpp" />
     <ClCompile Include="libXL\pugixml.cpp" />
     <ClCompile Include="libXL\XLCell.cpp" />
     <ClCompile Include="libXL\XLCellIterator.cpp" />
@@ -175,9 +176,13 @@
     <ClCompile Include="libXL\XLXmlFile.cpp" />
     <ClCompile Include="libXL\XLXmlParser.cpp" />
     <ClCompile Include="libXL\XLZipArchive.cpp" />
+    <ClCompile Include="MainFrame.cpp" />
+    <ClCompile Include="RaceXL_App.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="RaceActivity.h" />
+    <ClInclude Include="CardPanel.h" />
     <ClInclude Include="libXL\IZipArchive.hpp" />
     <ClInclude Include="libXL\OpenXLSX-Exports.hpp" />
     <ClInclude Include="libXL\OpenXLSX.hpp" />
@@ -216,6 +221,7 @@
     <ClInclude Include="libXL\XLXmlParser.hpp" />
     <ClInclude Include="libXL\XLZipArchive.hpp" />
     <ClInclude Include="libXL\zippy\zippy.hpp" />
+    <ClInclude Include="MainFrame.h" />
     <ClInclude Include="nowide\nowide\args.hpp" />
     <ClInclude Include="nowide\nowide\cenv.hpp" />
     <ClInclude Include="nowide\nowide\config.hpp" />

@@ -102,6 +102,15 @@
     <ClCompile Include="libXL\XLZipArchive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CardPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RaceXL_App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libXL\utilities\XLUtilities.hpp">
@@ -267,6 +276,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="nowide\nowide\windows.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CardPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RaceActivity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

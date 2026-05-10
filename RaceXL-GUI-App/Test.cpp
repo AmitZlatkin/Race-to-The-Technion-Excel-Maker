@@ -1,6 +1,6 @@
 #include <wx/wx.h>
 
-class App : public wxApp {
+class TestApp : public wxApp {
 public:
     bool OnInit() {
         wxFrame* window = new wxFrame(NULL, wxID_ANY, "GUI Test", wxDefaultPosition, wxSize(600, 400));
@@ -16,4 +16,4 @@ public:
     }
 };
 
-wxIMPLEMENT_APP(App);
+//wxIMPLEMENT_APP(TestApp);
