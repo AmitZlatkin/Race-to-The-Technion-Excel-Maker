@@ -1,7 +1,7 @@
-﻿  CardPanel.cpp
+﻿  MainFrame.cpp
   Generating code
-  1162 of 1691 functions (68.7%) were compiled, the rest were copied from previous compilation.
-    654 functions were new in current compilation
-    50 functions had inline decision re-evaluated but remain unchanged
+  1 of 1691 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    38 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   RaceXL-GUI-App.vcxproj -> C:\Users\Amit\OneDrive - Technion\תכנית אודיסאה\יצירת אקסל למירוץ\RaceXL-GUI-App\x64\Release\RaceXL-GUI-App.exe

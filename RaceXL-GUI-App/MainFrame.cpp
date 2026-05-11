@@ -36,10 +36,10 @@ void MainFrame::BuildMenu()
     fileMenu->Append(ID_GENERATE_EXCEL, "Generate Excel\tCtrl+G");
     fileMenu->AppendSeparator();
     fileMenu->Append(wxID_EXIT, "Exit");
-    menuBar->Append(fileMenu, "&File");
+    menuBar->Append(fileMenu, "");
     SetMenuBar(menuBar);
     CreateStatusBar();
-    SetStatusText("RaceXL GUI ready");
+    SetStatusText("RaceXL v2.0.0 by Amit Zlatkin");
 
     Bind(wxEVT_MENU, &MainFrame::OnImportJson, this, ID_IMPORT_JSON);
     Bind(wxEVT_MENU, &MainFrame::OnExportJson, this, ID_EXPORT_JSON);

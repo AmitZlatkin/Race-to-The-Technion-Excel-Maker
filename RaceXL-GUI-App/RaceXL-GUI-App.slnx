@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="RaceXL-GUI-App.vcxproj" />
+  <Project Path="RaceXL-GUI-App.vcxproj" Id="92881640-9eb3-4c06-a251-5553a596b61d" />
 </Solution>
